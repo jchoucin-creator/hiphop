@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ain't got no / I got</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;600&family=Permanent+Marker&display=swap">
+<style>
+/* Fitxa d'audició de S1. Pantalla: es projecta. Impressió: una sola pàgina A4 horitzontal.
+   Mateixa família visual que «Problema o resposta?»: negre = el problema (el que no té), groc = la resposta (el que té). */
+:root{
+  --bg:#ffffff; --ink:#141414; --soft:#5d5d58; --line:#bdbdb5;
+  --mark:#ffd60a; --on-mark:#141414; --no:#141414; --on-no:#ffffff;
+  --display:"Archivo Black","Arial Black",Impact,sans-serif;
+  --body:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --hand:"Permanent Marker","Comic Sans MS",cursive;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121211;--ink:#f1f1ec;--soft:#b3b3ab;--line:#4a4a45;--no:#f1f1ec;--on-no:#121211;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#121211;--ink:#f1f1ec;--soft:#b3b3ab;--line:#4a4a45;--no:#f1f1ec;--on-no:#121211;color-scheme:dark}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);line-height:1.4;padding:20px 16px 32px}
+.sheet{max-width:1200px;margin:0 auto;display:flex;flex-direction:column;gap:18px}
+
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;border-bottom:3px solid var(--ink);padding-bottom:10px}
+.act{font-family:var(--display);font-size:clamp(.95rem,1.6vw,1.2rem)}
+.act span{background:var(--mark);color:var(--on-mark);padding:0 .25em}
+.name{font-size:.95rem;color:var(--soft);font-weight:600}
+.name b{display:inline-block;min-width:16ch;border-bottom:2px solid var(--ink);margin-left:6px}
+
+.head{display:grid;grid-template-columns:1fr auto;gap:18px;align-items:end}
+h1{font-family:var(--display);font-size:clamp(2rem,5.4vw,4rem);line-height:.95;margin:0;text-wrap:balance}
+h1 em{font-style:normal;background:var(--mark);color:var(--on-mark);padding:0 .1em}
+.ctx{margin:8px 0 0;max-width:62ch;font-size:clamp(.95rem,1.5vw,1.1rem)}
+.listen{display:inline-flex;align-items:center;gap:10px;font-family:var(--display);font-size:1.05rem;text-decoration:none;color:var(--bg);background:var(--ink);padding:10px 16px;white-space:nowrap}
+.listen:hover,.listen:focus-visible{background:var(--mark);color:var(--on-mark);outline:none}
+.listen svg{width:20px;height:20px;fill:currentColor}
+
+.how{margin:0;padding:0;list-style:none;display:flex;gap:10px 22px;flex-wrap:wrap;font-weight:600}
+.how li{display:flex;gap:8px;align-items:baseline}
+.how .n{font-family:var(--display);background:var(--ink);color:var(--bg);min-width:1.6em;text-align:center}
+
+.cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.col{border:3px solid var(--ink);display:flex;flex-direction:column;min-width:0}
+.col header{padding:12px 16px;display:flex;align-items:center;gap:14px}
+.col.no header{background:var(--no);color:var(--on-no)}
+.col.yes header{background:var(--mark);color:var(--on-mark)}
+.col header svg{width:44px;height:auto;flex:none}
+.fig{fill:none;stroke:currentColor;stroke-width:7;stroke-linecap:round;stroke-linejoin:round}
+.lab{font-family:var(--display);font-size:clamp(1.5rem,3vw,2.3rem);line-height:1}
+.sub{font-size:.95rem;font-weight:600;margin-top:4px}
+.clue{padding:8px 16px 0;font-size:.9rem;color:var(--soft)}
+.clue b{color:var(--ink)}
+.lines{padding:4px 16px 14px;display:grid;gap:0}
+.lines > i{display:block;height:2.15em;border-bottom:2px solid var(--line)}
+
+.bronx{border:3px solid var(--ink);padding:12px 16px;display:grid;grid-template-columns:auto 1fr 1fr;gap:14px 22px;align-items:end}
+.bronx .q{font-family:var(--hand);font-size:clamp(1.2rem,2.2vw,1.6rem);line-height:1.1}
+.bronx label{font-weight:600;font-size:.95rem;display:block}
+.bronx .w{display:block;height:1.9em;border-bottom:2px solid var(--line)}
+
+.foot{font-size:.8rem;color:var(--soft);margin:0}
+
+.back{margin-top:40px;padding-top:24px;border-top:6px dashed var(--line)}
+.bh{font-family:var(--display);font-size:clamp(1.4rem,3vw,2.2rem);margin:0;line-height:1}
+.key{display:flex;gap:10px 26px;flex-wrap:wrap;font-size:1rem}
+.key b{display:inline-grid;place-items:center;width:1.6em;height:1.6em;border:2px solid var(--ink);margin-right:6px;font-family:var(--display)}
+.key .kno{background:var(--no);color:var(--on-no);border-color:var(--no)}
+.key .kyes{background:var(--mark);color:var(--on-mark)}
+.bank{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:10px}
+.bank li{border:3px solid var(--ink);padding:10px 8px 10px 10px;display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto auto;column-gap:10px;align-items:center;min-width:0}
+.bank .mk{grid-row:1/3;width:1.9em;height:1.9em;border:2px solid var(--ink)}
+.bank .en{font-family:var(--display);font-size:clamp(1rem,1.7vw,1.35rem);line-height:1.05;overflow-wrap:normal}
+.bank .ca{font-size:.82rem;color:var(--soft)}
+.after{margin:0;font-weight:600}
+.sol{border:2px dashed var(--soft);padding:8px 12px;font-size:.95rem}
+.sol summary{cursor:pointer;font-weight:600}
+.sol p{margin:6px 0 0}
+@media (max-width:900px){.bank{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media (max-width:520px){.bank{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+@media (max-width:760px){
+  .head{grid-template-columns:1fr}
+  .cols{grid-template-columns:1fr}
+  .bronx{grid-template-columns:1fr}
+}
+
+/* ---------- Impressió: A4 horitzontal, una sola pàgina, sempre en clar ---------- */
+@page{size:A4 landscape;margin:9mm}
+@media print{
+  :root{--bg:#fff;--ink:#000;--soft:#444;--line:#9a9a92;--no:#000;--on-no:#fff;color-scheme:light}
+  html,body{background:#fff}
+  body{padding:0;font-size:10.5pt}
+  .sheet{max-width:none;gap:3.2mm}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .listen{display:none}
+  .head{grid-template-columns:1fr}
+  h1{font-size:26pt}
+  .ctx{font-size:10pt;margin-top:1.5mm;max-width:none}
+  .top{padding-bottom:2mm}
+  .how{font-size:9.5pt}
+  .cols{gap:5mm}
+  .col header{padding:2.2mm 4mm}
+  .col header svg{width:10mm}
+  .lab{font-size:17pt}
+  .sub{font-size:9pt}
+  .clue{padding:1.5mm 4mm 0;font-size:8.5pt}
+  .lines{padding:0 4mm 2.5mm}
+  .lines > i{height:8.4mm}
+  .bronx{padding:2.5mm 4mm;gap:2mm 6mm}
+  .bronx .q{font-size:13pt}
+  .bronx label{font-size:9pt}
+  .bronx .w{height:7mm}
+  .back{margin-top:0;padding-top:0;border-top:0;break-before:page;page-break-before:always}
+  .sol{display:none}
+  .bh{font-size:20pt}
+  .key{font-size:10pt}
+  .bank{grid-template-columns:repeat(7,minmax(0,1fr));gap:3mm}
+  .bank{gap:4mm}
+  .bank li{padding:7mm 2.5mm;border-width:2px;column-gap:2.5mm}
+  .bank .mk{width:8mm;height:8mm}
+  .bank .en{font-size:14.5pt}
+  .bank .ca{font-size:9pt}
+  .back{gap:5mm}
+  .after{font-size:10pt}
+  .foot{font-size:7.5pt}
+}
+</style>
+</head>
+<body>
+<main class="sheet">
+  <div class="top">
+    <div class="act">S1 · <span>Audició</span> · Arrels del hip-hop</div>
+    <div class="name">Nom:<b>&nbsp;</b></div>
+  </div>
+
+  <section class="head">
+    <div>
+      <h1>Ain't got no… <em>I got!</em></h1>
+      <p class="ctx"><strong>«Ain't Got No, I Got Life»</strong> · Nina Simone, 1968. Uneix dues cançons del musical <em>Hair</em>. Als Estats Units és l'època de la lluita pels drets civils. La cançó té dues parts: primer diu tot el que <strong>no té</strong>; després, tot el que <strong>sí que té</strong>.</p>
+    </div>
+    <a class="listen" href="https://youtu.be/L5jI9I03q8E" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Escolta-la
+    </a>
+  </section>
+
+  <ol class="how">
+    <li><span class="n">1</span>1a escolta: fes el gest de cada part i escriu en anglès les paraules que entenguis.</li>
+    <li><span class="n">2</span>2a escolta: gira el full i classifica les paraules.</li>
+    <li><span class="n">3</span>Respon la pregunta del Bronx.</li>
+  </ol>
+
+  <div class="cols">
+    <section class="col no">
+      <header>
+        <svg viewBox="0 0 120 160" aria-hidden="true">
+          <circle class="fig" cx="60" cy="24" r="14"/>
+          <path class="fig" d="M60 38 V 96"/>
+          <path class="fig" d="M60 96 L 36 150 M60 96 L 84 150"/>
+          <path class="fig" d="M38 54 L 82 72 M82 54 L 38 72"/>
+          <path class="fig" d="M44 12 H 76" style="stroke-width:5"/>
+        </svg>
+        <div>
+          <div class="lab">Ain't got no…</div>
+          <div class="sub">No tinc… · El problema · <i>B-boy stance</i>: braços creuats</div>
+        </div>
+      </header>
+      <p class="clue"><b>Pista:</b> coses, persones de la família, coses que necessitem per viure…</p>
+      <div class="lines"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    </section>
+
+    <section class="col yes">
+      <header>
+        <svg viewBox="0 0 120 160" aria-hidden="true">
+          <circle class="fig" cx="60" cy="58" r="14"/>
+          <path class="fig" d="M60 72 V 120"/>
+          <path class="fig" d="M60 120 L 40 156 M60 120 L 80 156"/>
+          <path class="fig" d="M60 82 L 34 66 L 26 24 M60 82 L 86 66 L 94 24"/>
+          <path class="fig" d="M14 22 H 38 M82 22 H 106"/>
+          <path class="fig" d="M20 10 Q 26 4 32 10 M88 10 Q 94 4 100 10" style="stroke-width:4"/>
+        </svg>
+        <div>
+          <div class="lab">I got…</div>
+          <div class="sub">Tinc… · La resposta · <i>Raise the roof</i>: mans al sostre</div>
+        </div>
+      </header>
+      <p class="clue"><b>Pista:</b> parts del cos… i dues coses que ningú no li pot prendre.</p>
+      <div class="lines"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    </section>
+  </div>
+
+  <section class="bronx">
+    <div class="q">I al Bronx<br>dels anys 70?</div>
+    <div><label>Què no tenien?</label><span class="w"></span></div>
+    <div><label>Què tenien… i què van crear?</label><span class="w"></span></div>
+  </section>
+
+  <p class="foot">Música · 2n ESO · SA «De la baralla a la batalla. Arrels del hip-hop» · Vinculada a Beat Fighters</p>
+</main>
+
+<main class="sheet back">
+  <div class="top">
+    <div class="act">Revers · <span>Banc de paraules</span></div>
+    <div class="name">Nom:<b>&nbsp;</b></div>
+  </div>
+  <h2 class="bh">Escolta per segona vegada i classifica</h2>
+  <div class="key">
+    <span><b class="kno">✗</b> Diu que <strong>no ho té</strong> (<i>ain't got no</i>)</span>
+    <span><b class="kyes">✓</b> Diu que <strong>ho té</strong> (<i>I got</i>)</span>
+    <span><b class="kout">—</b> Ratlla les <strong>4 paraules</strong> que no surten a la cançó</span>
+  </div>
+  <ul class="bank">
+      <li><span class="mk" aria-hidden="true"></span><span class="en">hands</span><span class="ca">mans</span></li>
+      <li><span class="mk" aria-hidden="true"></span><span class="en">money</span><span class="ca">diners</span></li>
+      <li><span class="mk" aria-hidden="true"></span><span class="en">guitar</span><span class="ca">guitarra</span></li>
+      <li><span class="mk" aria-hidden="true"></span><span class="en">eyes</span><span class="ca">ulls</span></li>
+      <li><span class="mk" aria-hidden="true"></span><span class="en">mother</span><span class="ca">mare</span></li>
+      <li><span class="mk" aria-hidden="true"></span><span class="en">freedom</span><span class="ca">llibertat</span></li>
+      <li><span class="mk" aria-hidden="true"></span><span class="en">shoes</span><span class="ca">sabates</span></li>
+      <li><span class="mk" aria-hidden="true"></span><span class="en">soul</span><span class="ca">ànima</span></li>
+      <li><span class="mk" aria-hidden="true"></span><span class="en">phone</span><span class="ca">telèfon</span></li>
+      <li><span class="mk" aria-hidden="true"></span><span class="en">friends</span><span class="ca">amics</span></li>
+      <li><span class="mk" aria-hidden="true"></span><span class="en">nose</span><span class="ca">nas</span></li>
+      <li><span class="mk" aria-hidden="true"></span><span class="en">water</span><span class="ca">aigua</span></li>
+      <li><span class="mk" aria-hidden="true"></span><span class="en">heart</span><span class="ca">cor</span></li>
+      <li><span class="mk" aria-hidden="true"></span><span class="en">home</span><span class="ca">casa</span></li>
+      <li><span class="mk" aria-hidden="true"></span><span class="en">schooling</span><span class="ca">escola</span></li>
+      <li><span class="mk" aria-hidden="true"></span><span class="en">hair</span><span class="ca">cabells</span></li>
+      <li><span class="mk" aria-hidden="true"></span><span class="en">car</span><span class="ca">cotxe</span></li>
+      <li><span class="mk" aria-hidden="true"></span><span class="en">smile</span><span class="ca">somriure</span></li>
+      <li><span class="mk" aria-hidden="true"></span><span class="en">father</span><span class="ca">pare</span></li>
+      <li><span class="mk" aria-hidden="true"></span><span class="en">feet</span><span class="ca">peus</span></li>
+      <li><span class="mk" aria-hidden="true"></span><span class="en">love</span><span class="ca">amor</span></li>
+      <li><span class="mk" aria-hidden="true"></span><span class="en">ears</span><span class="ca">orelles</span></li>
+      <li><span class="mk" aria-hidden="true"></span><span class="en">faith</span><span class="ca">fe</span></li>
+      <li><span class="mk" aria-hidden="true"></span><span class="en">life</span><span class="ca">vida</span></li>
+      <li><span class="mk" aria-hidden="true"></span><span class="en">bike</span><span class="ca">bicicleta</span></li>
+      <li><span class="mk" aria-hidden="true"></span><span class="en">mouth</span><span class="ca">boca</span></li>
+      <li><span class="mk" aria-hidden="true"></span><span class="en">perfume</span><span class="ca">perfum</span></li>
+      <li><span class="mk" aria-hidden="true"></span><span class="en">head</span><span class="ca">cap</span></li>
+  </ul>
+  <p class="after">Quan acabis, copia a l'anvers, a la columna que toca, les paraules que no havies sentit a la primera escolta.</p>
+  <details class="sol">
+    <summary>Solucions (professorat, no s'imprimeix)</summary>
+    <p><b>✗ No ho té:</b> home, shoes, money, perfume, mother, father, friends, schooling, love, water, faith.</p>
+    <p><b>✓ Ho té:</b> hair, head, ears, eyes, nose, mouth, smile, heart, soul, hands, feet, life, freedom.</p>
+    <p><b>— No surten:</b> guitar, phone, car, bike.</p>
+  </details>
+  <p class="foot">Música · 2n ESO · Imprimiu a doble cara (gir pel costat curt) perquè el banc de paraules quedi al revers.</p>
+</main>
+</body>
+</html>
