@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Fes el teu fanzine</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;600&family=Permanent+Marker&display=swap">
+<style>
+/* Layout: full fotocopiat — passos en graella de 4 columnes, cada pas una vinyeta amb vora de tinta; una sola nota de retolador groc */
+:root{
+  --bg:#ffffff; --ink:#141414; --soft:#5d5d58; --line:#141414; --paper:#ffffff; --sheet:#ffffff;
+  --mark:#ffd60a; --on-mark:#141414; --cut:#d22a1e;
+  --display:"Archivo Black","Arial Black",Impact,sans-serif;
+  --body:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --hand:"Permanent Marker","Comic Sans MS",cursive;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121211;--ink:#f1f1ec;--soft:#b3b3ab;--line:#f1f1ec;--paper:#1b1b19;--sheet:#26261f;--mark:#ffd60a;--on-mark:#141414;--cut:#ff5d4d;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#121211;--ink:#f1f1ec;--soft:#b3b3ab;--line:#f1f1ec;--paper:#1b1b19;--sheet:#26261f;--mark:#ffd60a;--on-mark:#141414;--cut:#ff5d4d;color-scheme:dark}
+
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:1rem;line-height:1.5;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 48px}
+.wrap{max-width:1180px;margin:0 auto;display:flex;flex-direction:column;gap:36px}
+
+header{display:grid;grid-template-columns:1fr auto;gap:12px 32px;align-items:end;border-bottom:3px solid var(--line);padding-bottom:20px}
+.eyebrow{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--soft);margin:0 0 6px}
+h1{font-family:var(--display);font-size:clamp(2.4rem,7vw,4.6rem);line-height:.95;margin:0;text-wrap:balance;letter-spacing:-.01em}
+h1 span{background:var(--mark);color:var(--on-mark);padding:0 .12em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.lead{max-width:60ch;margin:12px 0 0;font-size:1.08rem}
+.kit{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end}
+.kit li{list-style:none;border:2px solid var(--line);padding:4px 10px;font-weight:600;font-size:.9rem;white-space:nowrap}
+.kit{margin:0;padding:0}
+
+h2{font-family:var(--display);font-size:1.5rem;margin:0 0 14px;text-wrap:balance}
+
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin:0;padding:0;counter-reset:s}
+.step{list-style:none;border:2px solid var(--line);background:var(--paper);display:flex;flex-direction:column;min-width:0}
+.step .n{font-family:var(--display);font-size:1.6rem;line-height:1;background:var(--ink);color:var(--bg);width:2.2em;height:1.7em;display:flex;align-items:center;justify-content:center}
+.step svg{width:100%;height:auto;display:block;padding:6px 10px 0}
+.step p{margin:0;padding:10px 14px 14px;font-size:.95rem}
+.step p b{font-weight:600}
+.step.done{background:var(--mark);color:var(--on-mark)}
+.step.done .n{background:var(--on-mark);color:var(--mark)}
+.step.done p{font-family:var(--hand);font-size:1.25rem;line-height:1.25}
+
+/* SVG */
+.sheet{fill:var(--sheet);stroke:var(--ink);stroke-width:2}
+.crease{stroke:var(--ink);stroke-width:1;opacity:.35}
+.fold{stroke:var(--ink);stroke-width:1.6;stroke-dasharray:5 4;fill:none}
+.arrow{stroke:var(--ink);stroke-width:2.6;fill:none;marker-end:url(#tip)}
+.edge{stroke:var(--ink);stroke-width:4;fill:none}
+.cut{stroke:var(--cut);stroke-width:4;fill:none;stroke-linecap:round}
+.lbl{font-family:var(--hand);font-size:12px;fill:var(--ink)}
+.lbl-cut{font-family:var(--hand);font-size:12px;fill:var(--cut)}
+.tipfill{fill:var(--ink)}
+
+.row2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:16px}
+.truc{border:2px dashed var(--line);padding:18px 20px;display:flex;flex-direction:column;gap:8px}
+.truc h2{margin:0}
+.truc p{margin:0}
+.hand{font-family:var(--hand);font-size:1.15rem;line-height:1.3}
+
+.pages{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:0;padding:0}
+.pages li{list-style:none;border:2px solid var(--line);padding:10px 12px;display:flex;flex-direction:column;gap:2px;min-height:6.4rem;background:var(--paper)}
+.pages .pg{font-family:var(--display);font-size:1.05rem}
+.pages .when{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:var(--soft)}
+.pages .what{font-size:.9rem}
+.pages li.wide{grid-column:span 2}
+
+.tips{display:flex;flex-wrap:wrap;gap:10px;margin:0;padding:0}
+.tips li{list-style:none;font-family:var(--hand);font-size:1.15rem;border-bottom:3px solid var(--mark);padding:2px 4px}
+
+@media (max-width:900px){.steps{grid-template-columns:repeat(2,minmax(0,1fr))}.row2{grid-template-columns:1fr}}
+@media (max-width:520px){.steps{grid-template-columns:1fr}header{grid-template-columns:1fr}.kit{justify-content:flex-start}.pages{grid-template-columns:repeat(2,minmax(0,1fr))}}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <marker id="tip" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" class="tipfill"/>
+    </marker>
+  </defs>
+</svg>
+
+<div class="wrap">
+  <header>
+    <div>
+      <p class="eyebrow">Música · 2n ESO · Arrels del hip-hop</p>
+      <h1>Fes el teu <span>fanzine</span></h1>
+      <p class="lead">Un fanzine és una revista petita feta a mà. Al hip-hop servien per explicar què passava al barri. Amb un sol full i set plecs en tindràs un de 8 pàgines per explicar la història del hip-hop.</p>
+    </div>
+    <ul class="kit" aria-label="Què necessites">
+      <li>1 full A4</li><li>tisores</li><li>llapis</li>
+    </ul>
+  </header>
+
+  <section aria-labelledby="h-plegar">
+    <h2 id="h-plegar">Com el pleguem</h2>
+    <ol class="steps">
+      <li class="step">
+        <div class="n">1</div>
+        <svg viewBox="0 0 220 150" role="img" aria-label="Full horitzontal plegat per la meitat, esquerra sobre dreta">
+          <rect class="sheet" x="20" y="12" width="180" height="127"/>
+          <line class="fold" x1="110" y1="12" x2="110" y2="139"/>
+          <path class="arrow" d="M48 92 C 62 40, 150 40, 168 88"/>
+          <text class="lbl" x="58" y="128">esquerra</text>
+          <text class="lbl" x="130" y="128">dreta</text>
+        </svg>
+        <p>Posa el full <b>en horitzontal</b>. Plega'l per la meitat ajuntant el costat esquerre amb el dret. Marca bé el plec i obre'l.</p>
+      </li>
+      <li class="step">
+        <div class="n">2</div>
+        <svg viewBox="0 0 220 150" role="img" aria-label="Els dos costats es pleguen cap a la ratlla del mig">
+          <rect class="sheet" x="20" y="12" width="180" height="127"/>
+          <line class="crease" x1="110" y1="12" x2="110" y2="139"/>
+          <line class="fold" x1="65" y1="12" x2="65" y2="139"/>
+          <line class="fold" x1="155" y1="12" x2="155" y2="139"/>
+          <path class="arrow" d="M28 82 C 45 52, 80 52, 100 80"/>
+          <path class="arrow" d="M192 82 C 175 52, 140 52, 120 80"/>
+          <text class="lbl" x="84" y="128">4 columnes</text>
+        </svg>
+        <p>Plega el costat esquerre i el dret <b>fins a la ratlla del mig</b>. Obre'l: ara tens 4 columnes.</p>
+      </li>
+      <li class="step">
+        <div class="n">3</div>
+        <svg viewBox="0 0 220 150" role="img" aria-label="Full plegat de dalt a baix: queden 8 rectangles">
+          <rect class="sheet" x="20" y="12" width="180" height="127"/>
+          <line class="crease" x1="65" y1="12" x2="65" y2="139"/>
+          <line class="crease" x1="110" y1="12" x2="110" y2="139"/>
+          <line class="crease" x1="155" y1="12" x2="155" y2="139"/>
+          <line class="fold" x1="20" y1="75.5" x2="200" y2="75.5"/>
+          <path class="arrow" d="M178 22 C 214 40, 214 100, 182 128"/>
+          <text class="lbl" x="34" y="48">dalt</text>
+          <text class="lbl" x="34" y="112">baix</text>
+        </svg>
+        <p>Plega'l per la meitat ajuntant el costat <b>de dalt amb el de baix</b>. Obre'l: ara tens 8 rectangles.</p>
+      </li>
+      <li class="step">
+        <div class="n">4</div>
+        <svg viewBox="0 0 220 150" role="img" aria-label="Full plegat per la meitat; tall des del plec per la ratlla del mig, d'un rectangle de llarg">
+          <rect class="sheet" x="65" y="12" width="90" height="127"/>
+          <line class="edge" x1="65" y1="12" x2="65" y2="139"/>
+          <line class="crease" x1="110" y1="12" x2="110" y2="139"/>
+          <line class="crease" x1="65" y1="75.5" x2="155" y2="75.5"/>
+          <line class="cut" x1="65" y1="75.5" x2="110" y2="75.5"/>
+          <text class="lbl" x="18" y="80">plec</text>
+          <path class="arrow" d="M44 72 L 60 72" style="stroke-width:2"/>
+          <text class="lbl-cut" x="118" y="70">talla</text>
+          <text class="lbl-cut" x="118" y="84">aquí</text>
+        </svg>
+        <p>Torna a fer el plec del pas 1. <b>Des del plec</b>, retalla per la ratlla horitzontal del mig fins a la primera ratlla vertical. Només un rectangle de llarg.</p>
+      </li>
+      <li class="step">
+        <div class="n">5</div>
+        <svg viewBox="0 0 220 150" role="img" aria-label="Full obert i plegat de dalt a baix, amb el tall al mig del plec">
+          <rect class="sheet" x="20" y="44" width="180" height="63.5"/>
+          <line class="crease" x1="65" y1="44" x2="65" y2="107.5"/>
+          <line class="crease" x1="110" y1="44" x2="110" y2="107.5"/>
+          <line class="crease" x1="155" y1="44" x2="155" y2="107.5"/>
+          <line class="edge" x1="20" y1="44" x2="65" y2="44"/>
+          <line class="edge" x1="155" y1="44" x2="200" y2="44"/>
+          <line class="cut" x1="67" y1="44" x2="153" y2="44" style="stroke-dasharray:2 6"/>
+          <text class="lbl" x="22" y="32">plec</text>
+          <text class="lbl-cut" x="96" y="32">tall</text>
+        </svg>
+        <p>Obre el full i plega'l per la ratlla horitzontal (<b>dalt amb baix</b>). El tall queda al mig del plec.</p>
+      </li>
+      <li class="step">
+        <div class="n">6</div>
+        <svg viewBox="0 0 220 150" role="img" aria-label="A l'esquerra, el full plegat agafat pels extrems amb fletxes cap al centre; a la dreta, el mateix full vist des de dalt en forma de creu">
+          <text class="lbl" x="6" y="20">a) de cara</text>
+          <rect class="sheet" x="8" y="58" width="96" height="30"/>
+          <line class="crease" x1="32" y1="58" x2="32" y2="88"/>
+          <line class="crease" x1="56" y1="58" x2="56" y2="88"/>
+          <line class="crease" x1="80" y1="58" x2="80" y2="88"/>
+          <line class="edge" x1="8" y1="58" x2="32" y2="58"/>
+          <line class="edge" x1="80" y1="58" x2="104" y2="58"/>
+          <line class="cut" x1="34" y1="58" x2="78" y2="58" style="stroke-dasharray:2 5"/>
+          <path class="arrow" d="M8 106 L 40 106"/>
+          <path class="arrow" d="M104 106 L 72 106"/>
+          <text class="lbl" x="28" y="130">empeny</text>
+          <line class="crease" x1="112" y1="14" x2="112" y2="138" style="stroke-dasharray:2 4"/>
+          <text class="lbl" x="120" y="20">b) des de dalt</text>
+          <rect class="sheet" x="124" y="66" width="84" height="16"/>
+          <rect class="sheet" x="158" y="32" width="16" height="84"/>
+          <line class="crease" x1="166" y1="32" x2="166" y2="116"/>
+          <text class="lbl" x="180" y="136">creu +</text>
+        </svg>
+        <p>Agafa el full plegat <b>pels dos extrems</b>, amb el tall a dalt, i <b>apropa les mans</b>. Les pàgines del mig s'obren: si ho mires des de dalt, veuràs una creu (+). Continua empenyent fins que les quatre ales es toquin i el full quedi pla.</p>
+      </li>
+      <li class="step">
+        <div class="n">7</div>
+        <svg viewBox="0 0 220 150" role="img" aria-label="Resultat: a l'esquerra el fanzine tancat amb la portada; a la dreta el fanzine obert per les pàgines 1 i 2">
+          <line class="crease" x1="94" y1="26" x2="94" y2="112"/>
+          <line class="crease" x1="91" y1="24" x2="91" y2="114"/>
+          <rect class="sheet" x="24" y="22" width="64" height="92"/>
+          <line class="edge" x1="24" y1="22" x2="24" y2="114"/>
+          <text class="lbl" x="32" y="46">EL MEU</text>
+          <text class="lbl" x="32" y="62">FANZINE</text>
+          <text class="lbl" x="32" y="104">MC ___</text>
+          <text class="lbl" x="36" y="136">tancat</text>
+          <rect class="sheet" x="114" y="30" width="46" height="76"/>
+          <rect class="sheet" x="160" y="30" width="46" height="76"/>
+          <line class="edge" x1="160" y1="30" x2="160" y2="106"/>
+          <text class="lbl" x="119" y="46">1</text>
+          <text class="lbl" x="196" y="46">2</text>
+          <line class="crease" x1="120" y1="62" x2="152" y2="62"/>
+          <line class="crease" x1="120" y1="72" x2="148" y2="72"/>
+          <line class="crease" x1="120" y1="82" x2="152" y2="82"/>
+          <circle cx="183" cy="74" r="14" style="fill:none;stroke:var(--ink);stroke-width:1.5;opacity:.5"/>
+          <text class="lbl" x="146" y="136">obert</text>
+        </svg>
+        <p>Plega-ho com un llibre, <b>amb la portada a fora</b>, i passa l'ungla pels plecs. Comprova-ho fullejant-lo: portada, 6 pàgines interiors i contraportada.</p>
+      </li>
+      <li class="step done">
+        <div class="n">8</div>
+        <p>Ja tens el fanzine de 8 pàgines!</p>
+      </li>
+    </ol>
+  </section>
+
+  <section class="row2">
+    <div class="truc">
+      <h2>Truc abans de dibuixar</h2>
+      <p>Amb el fanzine <b>plegat</b>, numera les pàgines en llapis: portada, 1, 2, 3, 4, 5, 6 i contraportada.</p>
+      <p class="hand">Si el desplegues, algunes pàgines queden cap per avall. Numerant-les plegat, no t'equivocaràs!</p>
+      <h2 style="margin-top:10px">Pàgines dobles? Tot bé!</h2>
+      <p>Cada pàgina té <b>dues capes</b> de paper i algunes tenen una vora tancada pel plec del pas 5. És normal: <b>no la tallis</b>. El fanzine només s'aguanta pels plecs i, si tallessis, es desmuntaria.</p>
+      <h2 style="margin-top:10px">El pòster secret</h2>
+      <p>Si despleges el fanzine del tot, la cara de darrere del full és un <b>A4 en blanc</b>. Hi pots fer un pòster amagat: la línia del temps del hip-hop o un mapa del Bronx a Catalunya.</p>
+    </div>
+    <div>
+      <h2>Què hi va a cada pàgina</h2>
+      <ol class="pages">
+        <li><span class="pg">Portada</span><span class="when">Sessió 5</span><span class="what">Títol, el teu nom de MC i el teu <i>tag</i></span></li>
+        <li><span class="pg">1 · El Bronx</span><span class="when">Sessió 1</span><span class="what">3 problemes, 1 resposta i qui va fer la primera festa</span></li>
+        <li><span class="pg">2 · Els elements</span><span class="when">Sessió 2</span><span class="what">Els 5 elements i per què una batalla no és una baralla</span></li>
+        <li><span class="pg">3 · Un precedent</span><span class="when">Sessió 3</span><span class="what">Un precedent del rap i en què s'hi assembla</span></li>
+        <li><span class="pg">4 · Estils</span><span class="when">Sessió 4</span><span class="what">3 estils amb la dècada i els elements d'«I Can»</span></li>
+        <li class="wide"><span class="pg">5–6 · El hip-hop aquí</span><span class="when">Sessió 5</span><span class="what">Un artista o una fita de Catalunya i la teva opinió amb un «perquè»</span></li>
+        <li><span class="pg">Contraportada</span><span class="when">Sessió 5</span><span class="what">Autoavaluació 🎵🎶🎼🎤 i «una estrella i un desig»</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-omplir">
+    <h2 id="h-omplir">Com l'omplim</h2>
+    <ul class="tips">
+      <li>Primer en llapis</li>
+      <li>Un títol a cada pàgina</li>
+      <li>Més dibuixos i fletxes que text</li>
+      <li>Frases curtes</li>
+      <li>La portada, l'última</li>
+    </ul>
+  </section>
+</div>
+</body>
+</html>
