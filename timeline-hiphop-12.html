@@ -15,6 +15,7 @@
   --bg:#0f1716; --surface:#16211f; --fg:#e8efed; --muted:#9db0ab; --line:#2a3a37;
   --teal:#35b3a3; --gold:#ddb04f; --ok:#3ccf6e; --ko:#ff5a4d; --slot:#1c2a28; color-scheme:dark}
 *{box-sizing:border-box}
+[hidden]{display:none!important}
 body{background:radial-gradient(120% 60% at 0% 0%, color-mix(in srgb,var(--teal) 14%,transparent),transparent 60%),radial-gradient(90% 50% at 100% 0%, color-mix(in srgb,var(--gold) 14%,transparent),transparent 60%),var(--bg);
   color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.45;min-height:100%;
   padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 40px}
@@ -57,6 +58,19 @@ button.act:focus-visible,.card:focus-visible{outline:3px solid var(--gold);outli
 .card.dragging{opacity:.35}
 .card .lock{position:absolute;top:4px;right:4px;background:var(--ok);color:#fff;font-size:11px;font-weight:700;border-radius:999px;padding:1px 7px}
 .card .year{position:absolute;left:0;right:0;top:0;background:rgba(0,0,0,.72);color:#fff;font-weight:700;font-size:14px;text-align:center;padding:3px 0;font-variant-numeric:tabular-nums}
+.flipbtn{font:inherit;font-size:11px;font-weight:700;line-height:1.3;border:1.5px solid var(--teal);color:var(--teal);background:transparent;border-radius:999px;padding:1px 8px;cursor:pointer}
+.flipbtn[aria-pressed="true"]{background:var(--teal);color:var(--surface)}
+.flipbtn:focus-visible{outline:3px solid var(--gold);outline-offset:1px}
+.card{perspective:900px}
+.flip{display:grid;transition:transform .5s;transform-style:preserve-3d}
+.flip>span{grid-area:1/1;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.front{position:relative;display:block}
+.back{transform:rotateY(180deg);background:var(--surface);color:var(--fg);text-align:left;padding:8px 8px 10px;display:flex;flex-direction:column;gap:6px;overflow:auto;font-size:12px;line-height:1.35}
+.back b{font-size:12.5px;color:var(--teal);line-height:1.2}
+.back em{font-style:normal;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);font-weight:700}
+.back .hint{font-size:12.5px;line-height:1.3}
+.back{justify-content:center}
+.card.flipped .flip{transform:rotateY(180deg)}
 .ghost{position:fixed;z-index:50;pointer-events:none;width:112px;border-radius:8px;box-shadow:0 10px 30px rgba(0,0,0,.4);transform:rotate(-3deg);opacity:.95}
 .final{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px;display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;justify-content:space-between}
 .final h2{margin:0 0 4px;font-size:20px}
@@ -67,7 +81,7 @@ button.act:focus-visible,.card:focus-visible{outline:3px solid var(--gold);outli
 .legend{display:flex;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--muted)}
 .legend i{display:inline-block;width:14px;height:14px;border-radius:3px;border:3px solid;vertical-align:-2px;margin-right:5px}
 .board{grid-template-columns:repeat(6,minmax(0,1fr));gap:14px 10px;max-width:1000px;width:100%;margin-inline:auto}
-@media (max-width:520px){.board{gap:8px 5px}.slot{padding:2px}.card{border-width:3px}.card .year{font-size:11px}}
+@media (max-width:520px){.back{font-size:10px;padding:5px}.back .hint{font-size:10px}.back b{font-size:10.5px}.flipbtn{font-size:9.5px;padding:0 5px}.board{gap:8px 5px}.slot{padding:2px}.card{border-width:3px}.card .year{font-size:11px}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 
@@ -76,11 +90,11 @@ button.act:focus-visible,.card:focus-visible{outline:3px solid var(--gold);outli
     <div>
       <div class="eyebrow">Hip-hop a secundària · Timeline inicial · 12 targetes</div>
       <h1>Ordena la història del <span>hip-hop</span></h1>
-      <p class="lead">Posa les 12 targetes en ordre cronològic, de la més antiga (posició 1) a la més recent (posició 12). Arrossega una targeta sobre una altra per intercanviar-les, o toca'n una i després l'altra. Tens 3 intents per comprovar.</p>
+      <p class="lead">Posa les 12 targetes en ordre cronològic, de la més antiga (posició 1) a la més recent (posició 12). Arrossega una targeta sobre una altra per intercanviar-les, o toca'n una i després l'altra. Tens 5 intents per comprovar. Toca el botó «Context» de cada targeta per descobrir què passava al món en aquella època.</p>
     </div>
     <div class="score" aria-live="polite">
       <div class="pct" id="pct">–<small id="pctTxt">Encara no has comprovat</small></div>
-      <div class="tries"><span id="triesTxt">3 intents disponibles</span><div class="dots" id="dots"></div></div>
+      <div class="tries"><span id="triesTxt">5 intents disponibles</span><div class="dots" id="dots"></div></div>
     </div>
   </header>
 
@@ -105,7 +119,7 @@ button.act:focus-visible,.card:focus-visible{outline:3px solid var(--gold);outli
 
 <script>
 /* ===== CONFIGURACIÓ (editar aquí) ===== */
-const INTENTS = 3;
+const INTENTS = 5;
 // true: dues targetes del mateix any es poden intercanviar sense penalització (p. ex. 1973, 1976, 1980…)
 // false: s'exigeix l'ordre exacte del solucionari (a, b, c, d)
 const ACCEPTA_MATEIX_ANY = true;
@@ -129,12 +143,27 @@ const CARDS = [
  [33,"2014",2014,"Pupil·les. Rap feminista en valencià"],
  [35,"2024",2024,"Breakdance als Jocs Olímpics de París"]
 ];
+// Revers de les targetes: context històric (sense dir l'any)
+const HINTS = {
+ 1:"L'Edat Mitjana de castells i cavallers dels videojocs com <i>Age of Empires</i>.",
+ 3:"Mickey Mouse acaba de néixer.",
+ 5:"Marvel publica el primer còmic dels <i>X-Men</i>.",
+ 6:"Encara no existeixen els videojocs.",
+ 9:"<i>Pong</i>, el primer videojoc d'èxit, triomfa als bars.",
+ 11:"George Lucas roda la primera pel·lícula de <i>Star Wars</i>.",
+ 15:"<i>Space Invaders</i> arrasa a les recreatives.",
+ 25:"Surt el primer <i>Super Mario Bros.</i>",
+ 30:"Arriba <i>Pokémon Vermell i Blau</i> a Europa.",
+ 31:"Pixar estrena <i>Ratatouille</i>.",
+ 33:"Tothom canta «Let It Go» de <i>Frozen</i>.",
+ 35:"Pixar estrena <i>Del revés 2</i>."
+};
 /* ===================================== */
 
 const byId = Object.fromEntries(CARDS.map(c=>[c[0],{id:c[0],date:c[1],key:c[2],name:c[3]}]));
 const SOLUTION = CARDS.map(c=>c[0]);
 const $ = s=>document.getElementById(s);
-let order, marks, left, history, finished, showSol, selected, solViews=0, solTimer=null;
+let order, marks, left, history, finished, showSol, selected, solViews=0, solTimer=null, flipped=new Set();
 
 function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
 function isRight(id,pos){
@@ -143,7 +172,7 @@ function isRight(id,pos){
 }
 function start(){
   do{ order = shuffle(SOLUTION.slice()); }while(order.filter((id,i)=>isRight(id,i)).length>3);
-  marks = {}; left = INTENTS; history = []; finished=false; showSol=false; selected=null; solViews=0; clearInterval(solTimer);
+  marks = {}; left = INTENTS; history = []; finished=false; showSol=false; selected=null; flipped=new Set(); solViews=0; clearInterval(solTimer);
   $("msg").textContent=""; $("msg").className="msg";
   $("final").hidden=true; $("pct").firstChild.nodeValue="–"; $("pctTxt").textContent="Encara no has comprovat";
   render(); updateTries();
@@ -159,9 +188,12 @@ function render(){
     const c=byId[id], m = showSol? '' : (marks[id]||'');
     const yr = showSol ? `<span class="year">${c.date}</span>`:'';
     const lock = m==='ok' && !finished ? `<span class="lock">✓</span>`:'';
-    return `<div class="slot" data-pos="${i}"><div class="num"><span>${i+1}</span></div>
-      <button class="card ${m}${selected===id?' sel':''}" data-id="${id}" aria-label="Posició ${i+1}: ${c.name}${m==='ok'?' (ben situada)':m==='ko'?' (mal situada)':''}">
-      <img src="${IMGS[id]}" alt="">${yr}${lock}</button></div>`;
+    const fl = flipped.has(id), h = HINTS[id];
+    const fb = h ? `<button class="flipbtn" data-flip="${id}" aria-pressed="${fl}">${fl?'Imatge':'Context'}</button>` : '';
+    const back = h ? `<span class="back"><b>${c.name}</b><em>Mentrestant…</em><span class="hint">${h}</span></span>` : '';
+    return `<div class="slot" data-pos="${i}"><div class="num"><span>${i+1}</span>${fb}</div>
+      <button class="card ${m}${selected===id?' sel':''}${fl?' flipped':''}" data-id="${id}" aria-label="Posició ${i+1}: ${c.name}${m==='ok'?' (ben situada)':m==='ko'?' (mal situada)':''}">
+      <span class="flip"><span class="front"><img src="${IMGS[id]}" alt="">${yr}${lock}</span>${back}</span></button></div>`;
   }).join("");
 }
 function canMove(id){ return !finished && !showSol && marks[id]!=='ok'; }
@@ -177,6 +209,8 @@ function swap(a,b){
 let suppressClick=false;
 $("board").addEventListener("click",e=>{
   if(suppressClick){suppressClick=false;return}
+  const f=e.target.closest(".flipbtn");
+  if(f){ const fid=+f.dataset.flip; flipped.has(fid)?flipped.delete(fid):flipped.add(fid); render(); document.querySelector(`.flipbtn[data-flip="${fid}"]`)?.focus(); return; }
   const b=e.target.closest(".card"); if(!b) return;
   const id=+b.dataset.id;
   if(!canMove(id)) return;
