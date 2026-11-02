@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Grups d'experts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;600&family=Permanent+Marker&display=swap">
+<style>
+/* S2 · Grups d'experts. Portada amb els 5 elements; cada fitxa es llegeix per passos.
+   Funciona en mòbil/tauleta (un per grup) o projectada (botons A− A+). Mateixa família visual que la resta de materials. */
+:root{
+  --bg:#ffffff; --ink:#141414; --soft:#5d5d58; --paper:#f3f3ef; --line:#d9d9d2;
+  --mark:#ffd60a; --on-mark:#141414;
+  --display:"Archivo Black","Arial Black",Impact,sans-serif;
+  --body:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --hand:"Permanent Marker","Comic Sans MS",cursive;
+  --fs:1.15rem;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121211;--ink:#f1f1ec;--soft:#b3b3ab;--paper:#1d1d1a;--line:#3a3a36;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#121211;--ink:#f1f1ec;--soft:#b3b3ab;--paper:#1d1d1a;--line:#3a3a36;color-scheme:dark}
+*{box-sizing:border-box}
+html,body{min-height:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);line-height:1.5;padding:0 16px}
+.app{max-width:1100px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column}
+button{font:inherit;font-weight:600;background:var(--bg);color:var(--ink);border:2px solid var(--ink);padding:8px 14px;cursor:pointer}
+button:hover{background:var(--paper)}
+button.primary{background:var(--ink);color:var(--bg)}
+button:focus-visible,a:focus-visible{outline:3px solid var(--mark);outline-offset:2px}
+button[disabled]{opacity:.35;cursor:default}
+
+/* Barra superior */
+.bar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;padding:14px 0;border-bottom:3px solid var(--ink)}
+.act{font-family:var(--display);font-size:clamp(1rem,1.8vw,1.3rem)}
+.act span{background:var(--mark);color:var(--on-mark);padding:0 .25em}
+.tools{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.timer{display:flex;align-items:center;gap:8px}
+.tnum{font-family:var(--display);font-variant-numeric:tabular-nums;font-size:1.25rem;min-width:4ch;text-align:right}
+.tnum.low{background:var(--mark);color:var(--on-mark);padding:0 .2em}
+
+/* Portada */
+.home{padding:28px 0 40px;display:flex;flex-direction:column;gap:22px}
+.eyebrow{font-size:.85rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--soft);margin:0}
+h1{font-family:var(--display);font-size:clamp(2.2rem,6vw,4.4rem);line-height:.95;margin:0;text-wrap:balance}
+h1 em{font-style:normal;background:var(--mark);color:var(--on-mark);padding:0 .1em}
+.lead{font-size:clamp(1.05rem,2vw,1.4rem);max-width:56ch;margin:0}
+.steps{display:flex;gap:10px 24px;flex-wrap:wrap;margin:0;padding:0;list-style:none;font-weight:600}
+.steps b{font-family:var(--display);background:var(--ink);color:var(--bg);padding:0 .45em;margin-right:6px}
+.groups{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px}
+.groups li{display:flex}
+.groups a{flex:1;display:flex;flex-direction:column;gap:6px;border:3px solid var(--ink);padding:18px;color:inherit;text-decoration:none;min-height:150px}
+.groups a:hover,.groups a:focus-visible{background:var(--mark);color:var(--on-mark);outline:none}
+.groups .n{font-family:var(--display);font-size:2.6rem;line-height:1}
+.groups .t{font-family:var(--display);font-size:1.35rem;line-height:1.1}
+.groups .d{font-size:.95rem}
+.note{font-family:var(--hand);font-size:1.2rem;margin:0}
+
+/* Fitxa */
+.sheet{flex:1;display:flex;flex-direction:column;gap:18px;padding:22px 0}
+.ghead{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+.ghead .n{font-family:var(--display);background:var(--ink);color:var(--bg);padding:0 .35em;font-size:clamp(1.6rem,4vw,2.6rem);line-height:1.1}
+.ghead h2{font-family:var(--display);font-size:clamp(1.6rem,4vw,2.6rem);line-height:1.05;margin:0}
+.tabs{display:flex;gap:6px;flex-wrap:wrap}
+.tabs button{border-width:2px;font-size:.95rem}
+.tabs button[aria-selected="true"]{background:var(--mark);color:var(--on-mark);border-color:var(--ink)}
+.panel{font-size:var(--fs);max-width:70ch}
+.panel h3{font-family:var(--display);font-size:1.5em;line-height:1.1;margin:0 0 .6em}
+.panel p{margin:0 0 .9em}
+.panel ol,.panel ul{margin:0;padding-left:1.4em;display:grid;gap:.6em}
+.panel li::marker{font-weight:700}
+.panel .mission{font-size:1.15em;border-left:6px solid var(--mark);padding-left:14px}
+.panel .tip{color:var(--soft)}
+.words{list-style:none;padding:0!important;display:grid;gap:10px!important}
+.words li{border:2px solid var(--ink);padding:10px 14px}
+.words b{font-family:var(--display);font-weight:400}
+.qs li{border-bottom:2px solid var(--line);padding-bottom:.6em}
+.frame li{padding:6px 0}
+.frame .gap{display:inline-block;min-width:9ch;border-bottom:3px solid var(--ink);margin:0 .2em}
+.write{font-family:var(--hand);font-size:1.1em;margin-top:1em}
+em{font-style:italic}
+
+.nav{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:12px 0 20px;border-top:3px solid var(--ink)}
+.size{display:flex;gap:6px}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="bar">
+    <div class="act" id="act">S2 · <span>Grups d'experts</span></div>
+    <div class="tools">
+      <div class="timer" aria-live="polite">
+        <span class="tnum" id="tnum">13:00</span>
+        <button id="tbtn" type="button">Inicia 13'</button>
+      </div>
+      <div class="size">
+        <button type="button" id="smaller" aria-label="Lletra més petita">A−</button>
+        <button type="button" id="bigger" aria-label="Lletra més gran">A+</button>
+      </div>
+    </div>
+  </header>
+  <main id="view"></main>
+</div>
+
+<script>
+const G = [
+{ n:1, t:"El DJ", short:"Qui posa la música i crea la base.", el:"DJ", gest:"del DJ",
+  mission:"Sou els experts en **DJ**. Heu d'aprendre què fa un DJ i explicar-ho al vostre grup base en 1 minut.",
+  under:"a una, els noms de persones; a l'altra, les paraules en anglès.",
+  words:[["DJ (discjòquei)","persona que posa i barreja música enregistrada."],["Plats","els tocadiscos on giren els discos."],["Break","el tros d'una cançó on només sona la bateria i el baix."],["Scratching","moure el disc endavant i enrere amb la mà per crear sons nous."],["Turntablism","l'art de fer música manipulant els discos."]],
+  text:[
+   "**DJing.** Coneguda com la pràctica de reproduir música o parts de música enregistrada fent girar els discs o les pistes simultàniament per part del DJ (discjòquei) per a un públic, en el DJing es crea aquesta base musical i rítmica sobre la qual la figura de l'MC interacciona parlant, rapejant i motivant tant el públic com els ballarins de hip-hop.",
+   "La pràctica del DJing es remunta als orígens del hip-hop, i ha estat molt important, ja que no només implica organitzar i seleccionar la música, sinó que el seu desenvolupament tècnic i el domini dels plats amb el temps l'ha transformat en una pràctica artística en la qual cada DJ pot mostrar la seva personalitat i alhora és capaç d'unir el col·lectiu creant una sensació de comunitat.",
+   "Cal remarcar el paper de DJ Kool Herc amb la creació del *breakbeat*, i l'aportació de Grandmaster Flash amb l'*scratching* o la *Quick Mix Theory*, juntament amb altres maneres de *turntablism* (tècnica de manipular i fer girar els discos) com el *beat juggling* (manipulació rítmica entre dues músiques) o el *backspinning* (rebobinar un disc per reiniciar un *break*), que s'han anat perfeccionant i han influït en altres estils com la música electrònica o el pop."],
+  qs:["Què fa un DJ? Per a qui crea la base musical?","Què va crear DJ Kool Herc? I què va aportar Grandmaster Flash?","Segons el text, per què el DJ és capaç d'unir la comunitat?"],
+  frame:["El DJ és la persona que ___.","Una persona important és ___, que va ___.","Una paraula clau és ___, que vol dir ___.","El nostre gest del DJ és aquest: (ensenyeu-lo)."]},
+{ n:2, t:"L'MC i el rap", short:"Qui agafa el micròfon i rapeja.", el:"MC i rap", gest:"de l'MC",
+  mission:"Sou els experts en **MC i rap**. Heu d'aprendre què fa un MC i què és el rap, i explicar-ho al vostre grup base en 1 minut.",
+  under:"a una, els noms de persones; a l'altra, les paraules en anglès.",
+  words:[["MC (mestre de cerimònies)","persona que agafa el micròfon, anima el públic i rapeja."],["Flow","la manera personal de cada MC de col·locar les paraules sobre el ritme."],["Spoken word","poesia dita en veu alta davant d'un públic."],["Compàs de 4/4","el ritme de quatre temps de gairebé totes les bases de rap."],["Sound system","equip de so mòbil de les festes de carrer de Jamaica."]],
+  text:[
+   "**Emceeing/rapping.** L'MC (*master of ceremonies* o *microphone controller*) era la persona que, mentre els DJs punxaven, s'encarregava de conduir i interaccionar amb el públic perquè aquest connectés amb la música i l'ambient. Els orígens de l'MCing (acció de l'MC) fan referència a la poesia parlada i al ritme, i apunten a la poesia *slam* o l'*spoken word* com a antecedents.",
+   "Segons Bradley (2017), «cada cançó de rap és un poema esperant a ser interpretat»; per tant, la mètrica i el llenguatge conformen un missatge artístic on la paraula és un canal d'expressió. La figura que representa l'MC ja ve dels *sound systems* jamaicans, on és la persona que anima i condueix les trobades i interacciona amb el públic, però també qui té l'oportunitat de transmetre els missatges.",
+   "Torman Jahi (2020) defineix el paper de l'*emcee* (MC) com «un llenç en blanc, on les paraules són la creació, i a través de la improvisació i interpretació en directe els dona vida», amb el poder de desafiar i d'interpel·lar el món i el públic amb el seu discurs. Com a elements essencials de l'*emceeing* destaquen la capacitat d'articular i organitzar el ritme, les rimes i l'anomenat *flow*, que cadascú adapta de manera personal i que va directament relacionat amb la connexió entre música i paraula. Cal destacar figures com Pebblee Poo, primera dona MC (1979), Coke La Rock o Melle Mel.",
+   "Per la seva banda, la música rap «és la veu dels sense veu» (Tefo, 2022), que troben en aquest tipus de pràctica artística un altaveu per exterioritzar i denunciar la situació que viu tota una comunitat, ja que no s'ha d'oblidar que el rap sorgeix de contextos complexos (opressió política, social i econòmica). Caracteritzat per ser una forma de poesia parlada, té un component essencial en el domini de la rima i el ritme, que sol estar en compàs de 4/4, i la veu s'hi adapta i ajusta com si es tractés d'un poema.",
+   "La popularitat del rap a partir de finals del segle XX va arribar al públic amb cançons com «U Can't Touch This», d'MC Hammer (1990), que van portar el hip-hop a les grans masses. En el cas de Catalunya, com a raper cal destacar l'artista El Nota, premiat al Sona 9 (2008). La seva expansió l'ha fet evolucionar i s'han originat diferents tipus de rap: rap conscient (consciència social, política, justícia), *old school* (rap dels anys vuitanta i noranta), rap alternatiu (fusió amb altres estils com l'electrònica), *mumble rap* (melodies comercials fàcils de recordar i lletres poc clares), trap, etc. Cada artista tria on se sent més còmode."],
+  qs:["Què vol dir MC? Què feia l'MC a les primeres festes de hip-hop?","Què és el *flow*?","Per què es diu que el rap és «la veu dels sense veu»?"],
+  frame:["L'MC és la persona que ___.","El rap és ___ i serveix per ___.","Una persona important és ___ (la primera dona MC) o ___ (raper català).","El nostre gest de l'MC és aquest: (ensenyeu-lo)."]},
+{ n:3, t:"El grafiti", short:"L'art que pinta les parets de la ciutat.", el:"grafiti", gest:"del grafiti",
+  mission:"Sou els experts en **grafiti**. Heu d'aprendre què és el grafiti del hip-hop i explicar-ho al vostre grup base en 1 minut.",
+  under:"a una, els noms de persones; a l'altra, els noms de llocs.",
+  words:[["Art urbà","art que es fa a les parets i els espais del carrer."],["Tag","signatura amb el nom (o el sobrenom) de l'artista."],["Stencil","plantilla retallada per pintar la mateixa imatge moltes vegades."],["Reivindicativa","que defensa una idea o denuncia una injustícia."]],
+  text:[
+   "**Grafiti.** Encara que si busquéssim els orígens del grafiti ens remuntaríem a l'antiguitat, quan parlem d'aquest terme, connectant-lo amb la cultura hip-hop, ens referim a una expressió concreta d'art urbà. El primer grafiti en format *tagging* (grafiti/signatura amb el nom de l'artista o que evoca paraules) va ser obra de Cornbread als anys seixanta a Filadèlfia, i més tard l'artista Taki el va popularitzar el 1970 en fer un *tag* amb el seu nom (Taki 183) a la ciutat de Nova York.",
+   "Una de les figures més rellevants és Fab 5 Freddy, originari del Bronx i membre de The Fabulous 5 amb Lee Quiñones, que van acostar el concepte de grafiti al món de les belles arts a finals dels anys setanta. A partir de llavors el grafiti ha evolucionat i s'ha expandit per tot el món, i ha esdevingut un tipus d'expressió artística quotidiana, popular i molt propera al públic.",
+   "Ha estat així gràcies a artistes com Blek le Rat (França), amb els seus *stencils*, i les intervencions intrigants i iròniques de Banksy (Anglaterra), que a través de les seves obres han estat capaços de sacsejar el públic traient a la palestra temes socials que fomenten una mirada reflexiva, crítica i reivindicativa de la realitat, i que han fet que el grafiti esdevingui un veritable llenguatge visual. Segons Tefo (2022), hi ha persones que consideren que el grafiti és la versió visual de la música rap i estableixen una gran connexió entre imatge, so i paraula.",
+   "Actualment, el grafiti ja forma part de la realitat dels entorns urbans de tot el món. Ciutats com Bristol han trobat en el grafiti una manera de cohesió i sentiment comunitari que aporta personalitat a barris com Stokes Croft. A Espanya, Juan Carlos Argüello («Muelle») serà el primer artista del grafiti que n'ha impulsat l'expansió per tot el territori, on amb el pas del temps s'han creat esdeveniments com el Festival Asalto, el Festival d'Art Urbà de Múrcia, el Pintalis Fest (Mollet) o el BAUM Fest a Barcelona. A la mateixa ciutat és possible passejar o fer una ruta d'art urbà pels barris de Sant Andreu, Gràcia o Poblenou, que són un exemple de la diversitat d'artistes que hi han deixat la seva empremta i ens conviden a gaudir, observar i reflexionar."],
+  qs:["Què és un *tag*? Qui va fer el primer i qui el va fer conegut a Nova York?","Per què hi ha qui diu que el grafiti és «la versió visual del rap»?","Digueu un festival o un barri de Catalunya on podem veure art urbà."],
+  frame:["El grafiti és ___.","El primer *tag* el va fer ___ i el va fer conegut ___.","Avui el grafiti serveix per ___.","El nostre gest del grafiti és aquest: (ensenyeu-lo)."]},
+{ n:4, t:"El breaking", short:"El ball de les crews.", el:"breaking", gest:"del breaking",
+  mission:"Sou els experts en **breaking**. Heu d'aprendre què és el breaking i explicar-ho al vostre grup base en 1 minut.",
+  under:"a una, els noms de persones i grups; a l'altra, els noms de moviments.",
+  words:[["B-boy / b-girl","ballarí o ballarina de breaking."],["Crew","colla de ballarins i ballarines que entrenen i competeixen junts."],["Block party","festa al carrer o al pati del barri."],["Freeze","parada en una postura, sovint de cap per avall."],["Power moves","moviments acrobàtics de força, com girar sobre l'esquena o el cap."]],
+  text:[
+   "**B-boying/B-girling.** L'expressió del hip-hop a través del moviment és el que coneixem com a *breakdance*, i els b-boys o b-girls són els ballarins i ballarines que amb el seu cos expressen les seves emocions, aspiracions i lluites. Tot i que sempre s'ha ballat, a finals dels anys seixanta la influència de cantants com James Brown i les trobades i els espais com les *block parties* van ser elements clau per al desenvolupament del *breakdance*, i entre aquests cal destacar Crazy Legs.",
+   "A la dècada dels anys setanta proliferen les anomenades *crews*, colles de b-boys, b-girls i mixtes que comencen a perfeccionar i definir una tècnica amb passos més específics, anant d'un nivell alt a un de baix a l'hora de ballar, introduint moments de *freeze* (parada), *floor-rocking*, *power moves* i jocs de peus. La Rock Steady Crew serà força coneguda a principis dels anys vuitanta.",
+   "A la dècada dels vuitanta el *breakdance* es comença a colar als mitjans audiovisuals i al cinema, a pel·lícules com *Flashdance*. L'estètica i el vestuari que els b-boys i les b-girls faran servir als anys noranta, que serà un reclam per a les noves tendències en el món de la moda, fusiona un estil esportiu amb l'urbà i la cultura pop, amb les sabatilles esportives, les cadenes d'or, les ulleres de sol i les gorres de beisbol com a complements identitaris.",
+   "L'impacte del *breakdance* en les darreres dècades ha fet que apareguin persones especialitzades com el coreògraf Kader Attou, la b-girl Señorita Carlota o el b-boy Lagaet a França, la b-girl Sunny Choi als EUA, el b-boy del Congo Junior Bosila i, a Catalunya, els Brodas Bros (2006). El 2024 el *breaking* va ser categoria olímpica als Jocs Olímpics de París."],
+  qs:["Què expressen els b-boys i les b-girls amb el cos?","Què és una *crew*? Digueu dos moviments típics del breaking.","Què va passar el 2024? Qui són els Brodas Bros?"],
+  frame:["El breaking és ___.","Les *crews* són ___ i fan moviments com ___.","Un fet important és que ___.","El nostre gest del breaking és aquest: (ensenyeu-lo)."]},
+{ n:5, t:"El coneixement", short:"D'on ve el nom i quins valors defensa.", el:"coneixement i valors", gest:"dels valors del hip-hop",
+  mission:"Sou els experts en **coneixement i valors**: d'on ve el nom del hip-hop, quins valors defensa i què és el cinquè element. Ho explicareu al vostre grup base en 1 minut.",
+  under:"a una, els valors del hip-hop; a l'altra, els noms de persones i grups.",
+  words:[["Etimologia","l'origen d'una paraula."],["Block party","festa al carrer o al pati del barri."],["Discriminació","tractar pitjor algú pel seu origen, el color de la pell, el gènere o altres motius."],["Knowledgement","coneixement d'un mateix."],["Zulu Nation","organització creada al Bronx el 1973 que volia canviar la violència de les bandes per l'art i la competició entre *crews*."]],
+  text:[
+   "**Text 1 · Etimologia i valors.** La cultura hip-hop va sorgir de la joventut afroamericana i llatina de la ciutat de Nova York (Kelly, 2023), però tot i que hi ha diferents opinions, l'expert Jeff Chang (2005) apunta que el nom de hip-hop amb el qual coneixem aquesta cultura ve de la cultura juvenil afroamericana. Les festes que es feien a les esglésies els caps de setmana a vegades rebien el nom de *hip-hops*. Per altra banda, la paraula *hip* conté un significat, herència dels esclaus africans del Senegal i Gàmbia, com a símbol d'il·luminació, de veure-hi, on hip-hop podrien ser espais de visió on sentir-se lliure i moure's (Chang, 2021).",
+   "Als anys cinquanta, les festes que organitzaven a les cases els adolescents s'anomenaven *Them old hippity hops*, terme que també es feia servir de manera despectiva per cridar l'atenció als b-boys més joves a les *block parties*. Diuen que va ser allà mateix on els MCs van començar a utilitzar les paraules *hip* i *hop* per interactuar amb el públic, i que a poc a poc es va fixar el seu nom.",
+   "A més de l'origen etimològic, també Colozzi (2023), quan parla de la cultura hip-hop, fa referència als valors de la pau, la unitat, l'amor i la diversió, i apunta que la identitat d'aquesta cultura busca la no-violència, el rebuig de tota discriminació, el fet de compartir i la superació i creença en un mateix, a més a més de la noció de respecte, humilitat i tolerància.",
+   "**Text 2 · Knowledgement (coneixement d'un mateix).** Tot i ser el pilar que s'ha incorporat més recentment a l'àmbit del hip-hop, implica quelcom essencial per a l'artista. La cultura i els valors del hip-hop mantenen forts vincles amb l'autenticitat cap a un mateix i cap als altres i, per tant, és necessària l'autoexploració i l'observació per a l'expressió artística.",
+   "És essencial poder desenvolupar i posar en pràctica uns principis socials, morals i també espirituals que connectin amb aquest tipus de moviment i el col·lectiu, fent que així la cultura hip-hop, a més d'existir, sigui viscuda. Aquí hi podríem incloure la figura d'Afrika Bambaataa i el paper que va tenir amb el grup Zulu Nation, en veure en el hip-hop una oportunitat de donar llum per ajudar a sortir-se'n persones que vivien en ambients i contextos foscos."],
+  qs:["Segons el text 1, d'on podria venir el nom de «hip-hop»? Expliqueu-ne una de les possibilitats.","Quins valors defensa la cultura hip-hop? Digueu-ne quatre.","Què és el *knowledgement*? Per què la Zulu Nation ajuda a entendre que una batalla no és una baralla?"],
+  frame:["El nom de hip-hop podria venir de ___.","Els valors del hip-hop són ___.","El cinquè element és el *knowledgement*, que vol dir ___.","El nostre gest dels valors és aquest: (ensenyeu-lo)."]}
+];
+
+const TABS = [["fes","1 · Què heu de fer"],["paraules","2 · Paraules clau"],["text","3 · El text"],["preguntes","4 · Preguntes"],["explica","5 · Explicació"]];
+const esc = s => s.replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+const md = s => esc(s).replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/\*(.+?)\*/g,'<em>$1</em>');
+const view = document.getElementById('view');
+
+function home(){
+  document.getElementById('act').innerHTML = 'S2 · <span>Grups d\'experts</span>';
+  view.innerHTML = `<section class="home">
+    <p class="eyebrow">Música · 2n ESO · Arrels del hip-hop</p>
+    <h1>Els cinc <em>elements</em></h1>
+    <p class="lead">Cada grup d'experts obre el seu element, el llegeix i prepara una explicació d'1 minut per al seu grup base. Les respostes van a la llibreta.</p>
+    <ol class="steps"><li><b>2'</b>Grups base</li><li><b>13'</b>Grups d'experts</li><li><b>5'</b>Tornada al grup base</li></ol>
+    <ul class="groups">${G.map(g=>`<li><a href="#g${g.n}"><span class="n">${g.n}</span><span class="t">${esc(g.t)}</span><span class="d">${esc(g.short)}</span></a></li>`).join('')}</ul>
+    <p class="note">Una batalla no és una baralla.</p>
+  </section>`;
+}
+
+let cur = {g:null, tab:0};
+function sheet(n, tab){
+  const g = G[n-1]; cur = {g:n, tab};
+  document.getElementById('act').innerHTML = `S2 · <span>Grup ${g.n}</span>`;
+  const panels = {
+    fes:`<h3>Què heu de fer (13')</h3>
+      <p class="mission">${md(g.mission)}</p>
+      <ol>
+        <li><strong>Repartiu els rols:</strong> lector/a 1, lector/a 2, secretari/ària (apunta les respostes) i guardià/ana del temps.</li>
+        <li><strong>Llegiu el text en veu alta (4').</strong> Cada persona en llegeix un tros.</li>
+        <li><strong>Apunteu paraules clau (2').</strong> A la llibreta, en dues columnes: ${md(g.under)}</li>
+        <li><strong>Responeu les tres preguntes (4').</strong> Frases curtes. Tothom les copia a la seva llibreta.</li>
+        <li><strong>Prepareu l'explicació i inventeu un gest ${esc(g.gest)} (3').</strong> Tothom l'ha de saber fer, perquè tornareu cadascú al vostre grup base.</li>
+      </ol>`,
+    paraules:`<h3>Paraules clau</h3><ul class="words">${g.words.map(([w,d])=>`<li><b>${md(w)}:</b> ${md(d)}</li>`).join('')}</ul>`,
+    text:`<h3>El text</h3>${g.text.map(p=>`<p>${md(p)}</p>`).join('')}<p class="tip">Font: dossier pedagògic <em>Hip-hop a secundària</em>, L'Auditori, pp. 17–21.</p>`,
+    preguntes:`<h3>Preguntes</h3><ol class="qs">${g.qs.map(q=>`<li>${md(q)}</li>`).join('')}</ol><p class="write">✎ Escriviu les respostes a la llibreta.</p>`,
+    explica:`<h3>La meva explicació al grup base (1 minut)</h3><ul class="frame">${g.frame.map(f=>`<li>${md(f).replace(/___/g,'<span class="gap"></span>')}</li>`).join('')}</ul><p class="write">✎ Copieu el guió a la llibreta i completeu-lo.</p>`
+  };
+  const key = TABS[tab][0];
+  view.innerHTML = `<section class="sheet">
+    <div class="ghead"><span class="n">${g.n}</span><h2>${esc(g.t)}</h2></div>
+    <div class="tabs" role="tablist">${TABS.map(([k,l],i)=>`<button role="tab" aria-selected="${i===tab}" data-tab="${i}" type="button">${l}</button>`).join('')}</div>
+    <div class="panel" role="tabpanel">${panels[key]}</div>
+  </section>
+  <nav class="nav">
+    <button type="button" id="back">← Tots els grups</button>
+    <div style="display:flex;gap:8px">
+      <button type="button" id="prev" ${tab===0?'disabled':''}>← Anterior</button>
+      <button type="button" class="primary" id="next" ${tab===TABS.length-1?'disabled':''}>Següent →</button>
+    </div>
+  </nav>`;
+  view.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>go(n,+b.dataset.tab));
+  document.getElementById('back').onclick=()=>{location.hash='';};
+  document.getElementById('prev').onclick=()=>go(n,tab-1);
+  document.getElementById('next').onclick=()=>go(n,tab+1);
+  window.scrollTo(0,0);
+}
+function go(n,tab){ history.replaceState(null,'',`#g${n}-${tab+1}`); sheet(n,tab); }
+function route(){
+  const m = location.hash.match(/^#g([1-5])(?:-([1-5]))?$/);
+  if(m) sheet(+m[1], m[2]? +m[2]-1 : 0); else home();
+}
+window.addEventListener('hashchange', route);
+document.addEventListener('keydown', e=>{
+  if(cur.g===null || location.hash==='' ) return;
+  if(e.key==='ArrowRight' && cur.tab<TABS.length-1) go(cur.g,cur.tab+1);
+  if(e.key==='ArrowLeft' && cur.tab>0) go(cur.g,cur.tab-1);
+});
+
+/* Mida de lletra (es recorda en aquest navegador) */
+let fs = 1.15;
+try{ const v = parseFloat(localStorage.getItem('experts-fs')); if(v) fs = v; }catch(e){}
+const applyFs = ()=>{ document.documentElement.style.setProperty('--fs', fs+'rem'); try{localStorage.setItem('experts-fs', fs);}catch(e){} };
+document.getElementById('bigger').onclick=()=>{ fs=Math.min(2.4, +(fs+.15).toFixed(2)); applyFs(); };
+document.getElementById('smaller').onclick=()=>{ fs=Math.max(.9, +(fs-.15).toFixed(2)); applyFs(); };
+applyFs();
+
+/* Cronòmetre de 13' */
+let left = 13*60, tid = null;
+const tnum = document.getElementById('tnum'), tbtn = document.getElementById('tbtn');
+const show = ()=>{ tnum.textContent = `${Math.floor(left/60)}:${String(left%60).padStart(2,'0')}`; tnum.classList.toggle('low', left<=120); };
+tbtn.onclick = ()=>{
+  if(tid){ clearInterval(tid); tid=null; tbtn.textContent='Continua'; return; }
+  if(left<=0){ left=13*60; }
+  tbtn.textContent='Pausa';
+  tid = setInterval(()=>{ left--; show(); if(left<=0){ clearInterval(tid); tid=null; tbtn.textContent='Torna a 13\''; tnum.textContent='Temps!'; } },1000);
+};
+show();
+route();
+</script>
+</body>
+</html>
