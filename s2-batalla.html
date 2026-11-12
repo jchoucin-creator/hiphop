@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>De la baralla a la batalla</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;600&family=Permanent+Marker&display=swap">
+<style>
+/* S2 (2a part) · Tornada al grup base, «I have a dream», acords de lliga i fanzine p. 2.
+   Pensada per obrir-la cada alumne al seu ordinador des de Classroom (sense projector). */
+:root{
+  --bg:#ffffff; --ink:#141414; --soft:#5d5d58; --paper:#f3f3ef; --line:#d9d9d2;
+  --mark:#ffd60a; --on-mark:#141414;
+  --display:"Archivo Black","Arial Black",Impact,sans-serif;
+  --body:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --hand:"Permanent Marker","Comic Sans MS",cursive;
+  --fs:1.15rem;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121211;--ink:#f1f1ec;--soft:#b3b3ab;--paper:#1d1d1a;--line:#3a3a36;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#121211;--ink:#f1f1ec;--soft:#b3b3ab;--paper:#1d1d1a;--line:#3a3a36;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);line-height:1.5;padding:0 16px}
+.app{max-width:1100px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column}
+button{font:inherit;font-weight:600;background:var(--bg);color:var(--ink);border:2px solid var(--ink);padding:8px 14px;cursor:pointer}
+button:hover{background:var(--paper)}
+button.primary{background:var(--ink);color:var(--bg)}
+button:focus-visible,a:focus-visible{outline:3px solid var(--mark);outline-offset:2px}
+button[disabled]{opacity:.35;cursor:default}
+a{color:inherit}
+
+.bar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;padding:14px 0;border-bottom:3px solid var(--ink)}
+.act{font-family:var(--display);font-size:clamp(1rem,1.8vw,1.3rem)}
+.act span{background:var(--mark);color:var(--on-mark);padding:0 .25em}
+.tools{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.tnum{font-family:var(--display);font-variant-numeric:tabular-nums;font-size:1.25rem;min-width:4ch;text-align:right}
+.tnum.low{background:var(--mark);color:var(--on-mark);padding:0 .2em}
+
+.head{padding:24px 0 6px}
+.eyebrow{font-size:.85rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--soft);margin:0 0 6px}
+h1{font-family:var(--display);font-size:clamp(2rem,5.5vw,4rem);line-height:.95;margin:0;text-wrap:balance}
+h1 em{font-style:normal;background:var(--mark);color:var(--on-mark);padding:0 .1em}
+
+.tabs{display:flex;gap:6px;flex-wrap:wrap;padding:16px 0 4px}
+.tabs button{font-size:.95rem}
+.tabs button[aria-selected="true"]{background:var(--mark);color:var(--on-mark)}
+.tabs .min{font-weight:400;opacity:.75}
+
+.panel{font-size:var(--fs);max-width:72ch;padding:14px 0 24px;flex:1}
+.panel h2{font-family:var(--display);font-size:1.6em;line-height:1.08;margin:0 0 .5em}
+.panel h3{font-family:var(--display);font-size:1.1em;margin:1.2em 0 .4em}
+.panel p{margin:0 0 .85em}
+.panel ol,.panel ul{margin:0 0 .9em;padding-left:1.4em;display:grid;gap:.5em}
+.lead{border-left:6px solid var(--mark);padding-left:14px;font-size:1.08em}
+.quote{font-family:var(--display);font-size:1.35em;line-height:1.2;border:3px solid var(--ink);padding:16px 18px;margin:0 0 1em;background:var(--paper)}
+.quote small{display:block;font-family:var(--body);font-size:.6em;font-weight:600;color:var(--soft);margin-top:8px}
+.write{font-family:var(--hand);font-size:1.1em}
+.link{display:inline-flex;align-items:center;gap:8px;font-weight:600;border:2px solid var(--ink);padding:8px 14px;text-decoration:none;margin:0 0 1em}
+.link:hover{background:var(--mark);color:var(--on-mark)}
+
+/* Rellotge de torns */
+.turns{border:3px solid var(--ink);padding:14px 16px;margin:0 0 1.1em;display:grid;gap:12px}
+.turns .now{font-family:var(--display);font-size:1.6em;line-height:1.1}
+.turns .now span{background:var(--mark);color:var(--on-mark);padding:0 .15em}
+.turns .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.turns .clock{font-family:var(--display);font-size:2em;font-variant-numeric:tabular-nums}
+.order{list-style:none;padding:0!important;display:flex!important;flex-wrap:wrap;gap:6px!important;margin:0!important}
+.order li{border:2px solid var(--ink);padding:2px 10px;font-weight:600}
+.order li.done{opacity:.4;text-decoration:line-through}
+.order li.cur{background:var(--ink);color:var(--bg)}
+
+/* Graella per copiar */
+table{border-collapse:collapse;width:100%;margin:0 0 1em;font-size:.95em}
+th,td{border:2px solid var(--ink);padding:8px 10px;text-align:left;vertical-align:top}
+th{font-family:var(--display);font-weight:400;background:var(--paper)}
+td.blank{height:2.2em}
+
+/* Targetes d'acords */
+.cards{list-style:none;padding:0!important;display:grid!important;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px!important}
+.cards li{border:3px solid var(--ink);padding:14px}
+.cards b{font-family:var(--display);font-weight:400;font-size:1.15em;display:block;margin-bottom:4px}
+.frame{background:var(--mark);color:var(--on-mark);padding:2px 6px;font-weight:600}
+
+/* Esquema del fanzine */
+.zine{max-width:420px;width:100%;height:auto;display:block;margin:0 0 1em}
+.zine rect,.zine line{fill:none;stroke:currentColor;stroke-width:3}
+.zine .c{fill:var(--mark);stroke:currentColor;stroke-width:3}
+.zine text{fill:currentColor;font-family:var(--body);font-weight:600;font-size:15px;text-anchor:middle}
+.zine .tc{fill:var(--on-mark)}
+
+.nav{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:12px 0 20px;border-top:3px solid var(--ink)}
+@media (max-width:560px){th,td{padding:6px}}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="bar">
+    <div class="act">S2 · <span>2a part</span></div>
+    <div class="tools">
+      <span class="tnum" id="tnum">12:00</span>
+      <button type="button" id="tbtn">Inicia</button>
+      <button type="button" id="smaller" aria-label="Lletra més petita">A−</button>
+      <button type="button" id="bigger" aria-label="Lletra més gran">A+</button>
+    </div>
+  </header>
+
+  <div class="head">
+    <p class="eyebrow">Música · 2n ESO · Arrels del hip-hop</p>
+    <h1>De la baralla a la <em>batalla</em></h1>
+  </div>
+
+  <div class="tabs" role="tablist" id="tabs"></div>
+  <main class="panel" role="tabpanel" id="panel"></main>
+
+  <nav class="nav">
+    <button type="button" id="prev">← Anterior</button>
+    <button type="button" class="primary" id="next">Següent →</button>
+  </nav>
+</div>
+
+<script>
+const ELEMENTS = ["El DJ","L'MC i el rap","El grafiti","El breaking","El coneixement"];
+
+const STEPS = [
+{ key:'base', label:'1 · Grup base', min:12, html:`
+  <h2>Tornada al grup base</h2>
+  <p class="lead">Cada expert explica el seu element en <strong>1 minut</strong>, amb el guió que va preparar i el gest del seu grup. La resta escolta i pren nota.</p>
+  <div class="turns" id="turns">
+    <ol class="order" id="order"></ol>
+    <div class="now" id="now">Preparats? Comença <span>El DJ</span>.</div>
+    <div class="row">
+      <span class="clock" id="clock">1:00</span>
+      <button type="button" class="primary" id="go">Comença el torn</button>
+      <button type="button" id="skip">Expert següent →</button>
+    </div>
+  </div>
+  <h3>Mentre escoltes</h3>
+  <p>Copia aquesta graella a la llibreta i omple una fila per a cada element:</p>
+  <table>
+    <thead><tr><th>Element</th><th>Una paraula clau</th><th>El gest (dibuix ràpid o descripció)</th></tr></thead>
+    <tbody>${ELEMENTS.map(e=>`<tr><td>${e}</td><td class="blank"></td><td class="blank"></td></tr>`).join('')}</tbody>
+  </table>
+  <p class="write">✎ Quan surti el teu element, ensenya la teva graella als companys: comproveu que tothom ha entès la paraula clau.</p>` },
+
+{ key:'somni', label:'2 · Un somni', min:12, html:`
+  <h2>«I have a dream»</h2>
+  <p>El 28 d'agost de 1963, Martin Luther King va parlar davant de més de 200.000 persones a Washington, en la lluita pels drets civils de la població afroamericana.</p>
+  <a class="link" href="https://www.youtube.com/watch?v=9ppTiyxFSs0" target="_blank" rel="noopener">▶ Escolta el fragment del discurs</a>
+  <p class="write">🎧 Feu servir auriculars, o escolteu-lo tots junts amb l'altaveu del professorat. El professorat us dirà el minut.</p>
+  <h3>La frase clau</h3>
+  <div class="quote">«No hem de permetre que la nostra protesta creativa degeneri en violència física.»<small>Martin Luther King, 1963 (traducció)</small></div>
+  <h3>I deu anys després, al Bronx…</h3>
+  <p>Als anys setanta, moltes bandes del Bronx es barallaven pel control dels carrers. Alguns joves que n'havien format part van proposar una altra manera de competir: la <strong>Zulu Nation</strong>, creada el 1973, va convidar les bandes a enfrontar-se amb l'art.</p>
+  <p>Les bandes es van convertir en <strong>crews</strong>. En lloc de barallar-se amb els punys, competien en <strong>batalles</strong> de breaking, de DJ i de rap. Guanyava qui ho feia millor, i el públic feia de jutge.</p>
+  <p><strong>Beat Fighters és una batalla d'aquest tipus.</strong></p>
+  <h3>Respon a la llibreta</h3>
+  <ol>
+    <li>Què vol dir «protesta creativa»? Posa'n un exemple.</li>
+    <li>Quina diferència hi ha entre una baralla i una batalla?</li>
+    <li>Què té a veure el somni de Martin Luther King amb les batalles entre crews?</li>
+  </ol>` },
+
+{ key:'acords', label:'3 · Acords de lliga', min:10, html:`
+  <h2>Els acords de la nostra lliga</h2>
+  <p class="lead">A Beat Fighters fem batalles, no baralles. Amb el vostre grup base, escriviu <strong>un acord per a cada targeta</strong>.</p>
+  <p>Feu servir aquesta frase: <span class="frame">A la nostra lliga, quan ___, nosaltres ___.</span></p>
+  <ul class="cards">
+    <li><b>Respecte a l'adversari</b>Com tractem la banda contra qui ballem?</li>
+    <li><b>Respecte al jurat</b>Què fem quan la puntuació no ens agrada?</li>
+    <li><b>Respecte a l'error</b>Què fem quan algú s'equivoca, de la nostra banda o de l'altra?</li>
+    <li><b>Respecte a la diferència</b>Com fem que tothom pugui participar, cadascú a la seva manera?</li>
+  </ul>
+  <h3>Exemple</h3>
+  <p><em>A la nostra lliga, quan l'altra banda acaba la seva entrada, nosaltres l'aplaudim abans de començar.</em></p>
+  <h3>Posada en comú</h3>
+  <ol>
+    <li>Cada grup llegeix en veu alta els seus quatre acords.</li>
+    <li>Votem a mà alçada el millor acord de cada targeta.</li>
+    <li>Els quatre acords guanyadors seran les normes de la lliga. El professorat els penjarà a Classroom.</li>
+  </ol>` },
+
+{ key:'fanzine', label:'4 · Fanzine p. 2', min:15, html:`
+  <h2>Fanzine · pàgina 2: «Els elements»</h2>
+  <p>Divideix la pàgina 2 del teu fanzine en quatre quadrants i un cercle al centre:</p>
+  <svg class="zine" viewBox="0 0 400 300" role="img" aria-label="Esquema de la pàgina: quatre quadrants (DJ, MC, grafiti, breaking) i un cercle central">
+    <rect x="4" y="4" width="392" height="292"/>
+    <line x1="200" y1="4" x2="200" y2="296"/><line x1="4" y1="150" x2="396" y2="150"/>
+    <text x="100" y="40">DJ</text><text x="300" y="40">MC i rap</text>
+    <text x="100" y="275">Grafiti</text><text x="300" y="275">Breaking</text>
+    <circle class="c" cx="200" cy="150" r="62"/>
+    <text class="tc" x="200" y="142">Coneixement</text>
+    <text class="tc" x="200" y="164" style="font-size:12px">+ la frase</text>
+  </svg>
+  <ol>
+    <li><strong>A cada quadrant:</strong> un dibuix senzill de l'element i la seva paraula clau (la tens a la graella del pas 1).</li>
+    <li><strong>Al cercle del centre:</strong> el cinquè element, el coneixement, i acaba aquesta frase amb les teves paraules:<br><span class="frame">Una batalla no és una baralla perquè…</span></li>
+    <li>Si acabes aviat, afegeix-hi el nom d'una persona de cada element (per exemple, Kool Herc, Pebblee Poo, Taki 183, Brodas Bros).</li>
+  </ol>
+  <a class="link" href="fanzine.html" target="_blank" rel="noopener">Guia del fanzine →</a>` },
+
+{ key:'final', label:'5 · Tancament', min:3, html:`
+  <h2>La cadena dels cinc elements</h2>
+  <p class="lead">Tota la classe dreta. Marquem el pols amb palmes, com al <em>break</em>.</p>
+  <ol>
+    <li>Cada 8 palmes, el professorat diu un element: DJ, MC, grafiti, breaking, coneixement.</li>
+    <li>Tothom fa el gest que va inventar el grup d'experts d'aquell element.</li>
+    <li>L'última ronda va més ràpida: els cinc gestos seguits, sense parar.</li>
+  </ol>
+  <div class="quote">Una batalla no és una baralla.<small>Ho direm en veu alta tots junts per acabar.</small></div>` }
+];
+
+const tabs = document.getElementById('tabs'), panel = document.getElementById('panel');
+let cur = 0;
+function render(){
+  tabs.innerHTML = STEPS.map((s,i)=>`<button role="tab" type="button" aria-selected="${i===cur}" data-i="${i}">${s.label} <span class="min">${s.min}'</span></button>`).join('');
+  tabs.querySelectorAll('button').forEach(b=>b.onclick=()=>go(+b.dataset.i));
+  panel.innerHTML = STEPS[cur].html;
+  document.getElementById('prev').disabled = cur===0;
+  document.getElementById('next').disabled = cur===STEPS.length-1;
+  resetTimer(STEPS[cur].min);
+  if(STEPS[cur].key==='base') setupTurns();
+}
+function go(i){ cur=i; try{history.replaceState(null,'','#'+STEPS[i].key);}catch(e){} render(); window.scrollTo(0,0); }
+document.getElementById('prev').onclick=()=>cur>0&&go(cur-1);
+document.getElementById('next').onclick=()=>cur<STEPS.length-1&&go(cur+1);
+document.addEventListener('keydown',e=>{ if(e.target.closest('button')) return;
+  if(e.key==='ArrowRight'&&cur<STEPS.length-1) go(cur+1);
+  if(e.key==='ArrowLeft'&&cur>0) go(cur-1); });
+
+/* Cronòmetre de l'apartat */
+let left=0, tid=null, total=0;
+const tnum=document.getElementById('tnum'), tbtn=document.getElementById('tbtn');
+const fmt=s=>`${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`;
+function show(){ tnum.textContent=fmt(left); tnum.classList.toggle('low', left<=60); }
+function resetTimer(m){ clearInterval(tid); tid=null; total=left=m*60; tbtn.textContent='Inicia'; show(); }
+tbtn.onclick=()=>{
+  if(tid){ clearInterval(tid); tid=null; tbtn.textContent='Continua'; return; }
+  if(left<=0) left=total;
+  tbtn.textContent='Pausa';
+  tid=setInterval(()=>{ left--; show(); if(left<=0){ clearInterval(tid); tid=null; tnum.textContent='Temps!'; tbtn.textContent='Torna a començar'; } },1000);
+};
+
+/* Torns d'1 minut per expert */
+let tIdx=0, tLeft=60, tTid=null;
+function setupTurns(){
+  clearInterval(tTid); tTid=null; tIdx=0; tLeft=60;
+  const order=document.getElementById('order'), now=document.getElementById('now'),
+        clock=document.getElementById('clock'), goB=document.getElementById('go'), skip=document.getElementById('skip');
+  const paint=()=>{
+    order.innerHTML=ELEMENTS.map((e,i)=>`<li class="${i<tIdx?'done':i===tIdx?'cur':''}">${i+1} · ${e}</li>`).join('');
+    clock.textContent=fmt(Math.max(tLeft,0));
+    if(tIdx>=ELEMENTS.length){ now.innerHTML='Tots els experts han explicat el seu element. <span>Bona feina!</span>'; goB.disabled=true; skip.disabled=true; clock.textContent='—'; }
+    else now.innerHTML=`Ara explica: <span>${ELEMENTS[tIdx]}</span>`;
+  };
+  goB.onclick=()=>{
+    if(tTid){ clearInterval(tTid); tTid=null; goB.textContent='Continua'; return; }
+    goB.textContent='Pausa';
+    tTid=setInterval(()=>{ tLeft--; paint(); if(tLeft<=0){ clearInterval(tTid); tTid=null; goB.textContent='Temps! Expert següent'; goB.onclick=next; } },1000);
+  };
+  const next=()=>{ clearInterval(tTid); tTid=null; tIdx++; tLeft=60; goB.textContent='Comença el torn'; goB.onclick=null; setupHandlers(); paint(); };
+  function setupHandlers(){
+    goB.onclick=()=>{
+      if(tTid){ clearInterval(tTid); tTid=null; goB.textContent='Continua'; return; }
+      goB.textContent='Pausa';
+      tTid=setInterval(()=>{ tLeft--; paint(); if(tLeft<=0){ clearInterval(tTid); tTid=null; goB.textContent='Temps! Expert següent →'; goB.onclick=next; } },1000);
+    };
+  }
+  setupHandlers();
+  skip.onclick=next;
+  paint();
+}
+
+/* Mida de lletra (es recorda en aquest navegador) */
+let fs=1.15;
+try{ const v=parseFloat(localStorage.getItem('s2b-fs')); if(v) fs=v; }catch(e){}
+const applyFs=()=>{ document.documentElement.style.setProperty('--fs',fs+'rem'); try{localStorage.setItem('s2b-fs',fs);}catch(e){} };
+document.getElementById('bigger').onclick=()=>{ fs=Math.min(2.4,+(fs+.15).toFixed(2)); applyFs(); };
+document.getElementById('smaller').onclick=()=>{ fs=Math.max(.9,+(fs-.15).toFixed(2)); applyFs(); };
+applyFs();
+
+function fromHash(){ const i=STEPS.findIndex(s=>'#'+s.key===location.hash); if(i>=0 && i!==cur){ cur=i; render(); } }
+const start=STEPS.findIndex(s=>'#'+s.key===location.hash);
+cur = start>=0 ? start : 0;
+render();
+window.addEventListener('hashchange', fromHash);
+</script>
+</body>
+</html>
