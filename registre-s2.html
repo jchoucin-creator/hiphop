@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Registre S2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;600&display=swap">
+<style>
+/* Registre d'observació del professorat · S2, tornada al grup base. Imprimible en A4 horitzontal. */
+:root{--bg:#fff;--ink:#141414;--soft:#5d5d58;--line:#9a9a92;--mark:#ffd60a;--paper:#f3f3ef;
+  --display:"Archivo Black","Arial Black",Impact,sans-serif;--body:"Archivo","Helvetica Neue",Arial,sans-serif}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121211;--ink:#f1f1ec;--soft:#b3b3ab;--line:#55554f;--paper:#1d1d1a;color-scheme:dark}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);padding:20px 16px;line-height:1.35}
+.sheet{max-width:1150px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
+.top{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:end;border-bottom:3px solid var(--ink);padding-bottom:8px}
+h1{font-family:var(--display);font-weight:400;font-size:clamp(1.3rem,3vw,1.9rem);margin:0;line-height:1.05}
+h1 span{background:var(--mark);color:#141414;padding:0 .15em}
+.meta{font-weight:600;font-size:.95rem}
+.meta b{display:inline-block;min-width:10ch;border-bottom:2px solid var(--ink);margin:0 10px 0 4px}
+.wrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:760px}
+th,td{border:1.5px solid var(--ink);padding:5px 7px;vertical-align:top;text-align:left}
+thead th{background:var(--paper);font-size:.82rem;font-weight:600}
+thead th .c{font-family:var(--display);font-weight:400;font-size:1rem;display:block}
+td{height:1.95em}
+td.n{width:2.2em;text-align:right;color:var(--soft);font-size:.8rem}
+td.sc{width:9.5em;font-size:.72rem;color:var(--soft);white-space:nowrap;letter-spacing:.05em}
+.legend{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;font-size:.8rem}
+.legend div{border:1.5px solid var(--ink);padding:6px 8px}
+.legend b{font-family:var(--display);font-weight:400}
+.foot{font-size:.75rem;color:var(--soft);margin:0}
+@media (max-width:700px){.legend{grid-template-columns:1fr 1fr}}
+@page{size:A4 landscape;margin:8mm}
+@media print{
+  :root{--bg:#fff;--ink:#000;--soft:#444;--paper:#eee;color-scheme:light}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  body{padding:0;font-size:9pt}
+  .sheet{max-width:none;gap:2.5mm}
+  .wrap{overflow:visible}
+  table{min-width:0}
+  td{height:5mm;padding:0 1.5mm;line-height:1.05;vertical-align:middle}
+  thead th{font-size:7.5pt;padding:1mm 1.5mm}
+  thead th .c{font-size:9pt}
+  td.sc{font-size:6.5pt}
+  .legend{font-size:7pt;gap:2mm}
+  .legend div{padding:1.2mm 2mm}
+  h1{font-size:15pt}
+  .meta{font-size:9pt}
+}
+</style>
+</head>
+<body>
+<main class="sheet">
+  <div class="top">
+    <h1>Registre d'observació · <span>S2</span> · Tornada al grup base</h1>
+    <div class="meta">Grup:<b>&nbsp;</b>Data:<b>&nbsp;</b></div>
+  </div>
+
+  <div class="legend">
+    <div><b>1.2 · Elements</b><br>Explica què és el seu element i en diu almenys dues paraules clau amb sentit.</div>
+    <div><b>1.1 · Context</b><br>Situa l'element: lloc, època, una persona clau o la seva funció social.</div>
+    <div><b>Actitud (1.1 / 1.2)</b><br>Assumeix el rol, escolta els companys i respecta el torn de paraula.</div>
+    <div><b>Escala</b><br>Encercla: <b>NA</b> no assoleix · <b>AS</b> satisfactori · <b>AN</b> notable · <b>AE</b> excel·lent</div>
+  </div>
+
+  <div class="wrap">
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th style="width:24%">Alumne/a</th>
+        <th style="width:7%">Element<br>(1–5)</th>
+        <th><span class="c">1.2</span>Elements</th>
+        <th><span class="c">1.1</span>Context</th>
+        <th><span class="c">Actitud</span>Rol i escolta</th>
+        <th style="width:24%">Observacions</th>
+      </tr>
+    </thead>
+    <tbody id="rows"></tbody>
+  </table>
+  </div>
+  <p class="foot">CE1 · Música 2n ESO · SA «De la baralla a la batalla. Arrels del hip-hop». Element: 1 DJ · 2 MC i rap · 3 grafiti · 4 breaking · 5 coneixement.</p>
+</main>
+<script>
+const sc='<td class="sc">NA · AS · AN · AE</td>';
+document.getElementById('rows').innerHTML = Array.from({length:28},(_,i)=>`<tr><td class="n">${i+1}</td><td></td><td></td>${sc}${sc}${sc}<td></td></tr>`).join('');
+</script>
+</body>
+</html>
