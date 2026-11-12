@@ -52,7 +52,7 @@ a.row:hover .rd{color:inherit}
     <p class="eyebrow">Música · 2n ESO · Vinculada a Beat Fighters</p>
     <h1>De la baralla a la <span>batalla</span></h1>
     <p class="sub">Arrels del hip-hop</p>
-    <p class="lead">Cinc sessions per conèixer la història, el context i els elements de la cultura hip-hop. Aquí hi ha tot el que es projecta a classe.</p>
+    <p class="lead">Cinc sessions per entendre d’on ve el hip-hop i per què una batalla no és una baralla. Aquí hi ha tot el material de cada sessió.</p>
   </header>
   <nav id="nav" aria-label="Sessions"></nav>
   <div id="content"></div>
@@ -79,78 +79,39 @@ const DRIVE = {
 
 const SESSIONS = [
   {id:'s1', tag:'S1', title:'Per què neix el hip-hop al Bronx?', items:[
-    {main:true, kind:'Fitxa', t:'Ain’t got no… I got!', d:'Fitxa d’audició de Nina Simone amb banc de paraules en anglès. A4 horitzontal, doble cara.', page:'no-tinc-tinc.html'},
+    {main:true, kind:'Fitxa', t:'Ain’t got no… I got!', d:'Fitxa d’audició de Nina Simone amb banc de paraules en anglès.', page:'no-tinc-tinc.html'},
     {main:true, kind:'Presentació', t:'Problema o resposta?', d:'Sis cites del Bronx dels anys 70. Responem amb el cos.', page:'problema-resposta.html'},
-    {main:true, kind:'Presentació', t:'Vertader o fals', d:'Sis afirmacions als aros: qui encerta, avança.', page:'problema-resposta.html#vf'},
-    {main:true, kind:'Joc', t:'Timeline · Bàsic', d:'12 targetes, una o dues per sessió. 5 intents. Timeline inicial.', page:'timeline-hiphop-12.html'},
-    {main:true, kind:'Joc', t:'Timeline · Mitjà', d:'25 targetes amb les fites principals. 3 intents. Timeline inicial.', page:'timeline-hiphop-25.html'},
-    {main:true, kind:'Joc', t:'Timeline · Extrem', d:'Les 35 targetes del dossier. 3 intents. Timeline inicial.', page:'timeline-hiphop.html'},
-    {kind:'PDF', t:'Targetes Timeline', d:'Dossier de L’Auditori, pp. 71–74', drive:'timeline-targetes'},
-    {kind:'Presentació', t:'Context social del Bronx', d:'Versembrant, tema 1.1', drive:'versembrant-1-1'},
-    {kind:'Àudio', t:'«Ain’t Got No, I Got Life», Nina Simone', d:'audició de la fitxa', url:'https://youtu.be/L5jI9I03q8E'},
+    {main:true, kind:'Presentació', t:'Vertader o fals', d:'Sis afirmacions: qui encerta, avança.', page:'problema-resposta.html#vf'},
+    {main:true, kind:'Joc', t:'Timeline inicial', d:'12 targetes. Guarda el teu resultat: el compararem a la S5.', page:'timeline-hiphop-12.html'},
+    {kind:'Àudio', t:'«Ain’t Got No, I Got Life», Nina Simone', url:'https://youtu.be/L5jI9I03q8E'},
     {kind:'Vídeo', t:'Kool Herc i el breakbeat', url:'https://www.youtube.com/watch?v=btXVvpwgHcQ'},
     {kind:'Web', t:'Cindy Campbell, la festa del 1973', url:'https://rapealo.com/cindy/'}
   ]},
-  {id:'s2', tag:'S2', title:'De la baralla a la batalla', items:[
-    {main:true, kind:'Aplicatiu', t:'Grups d’experts · Els cinc elements', d:'Les cinc fitxes en pantalla: instruccions, paraules clau, text, preguntes i guió. Sense fotocòpies.', page:'experts.html'},
-    {main:true, kind:'Aplicatiu', t:'De la baralla a la batalla · 2a part', d:'Tornada al grup base, «I have a dream», acords de lliga, fanzine p. 2 i tancament.', page:'s2-batalla.html'},
-    {kind:'Vídeo', t:'Final de breaking, París 2024 · B-boys', url:'https://youtu.be/d-Vo866_jhY?si=NyIHs0cdjB5kZ_sK'},
-    {kind:'Vídeo', t:'Final de breaking, París 2024 · B-girls', url:'https://youtu.be/ld5ygnvN99k?si=er5vz_fQjnWsdzqg'},
-    {kind:'Àudio', t:'«Apache», Incredible Bongo Band', d:'cerca a YouTube', url:'https://www.youtube.com/results?search_query=Incredible+Bongo+Band+Apache'},
-    {kind:'Vídeo', t:'Kool Herc i el breakbeat', d:'com allargava el break amb dos discos', url:'https://www.youtube.com/watch?v=btXVvpwgHcQ'},
-    {kind:'PDF', t:'Fitxes dels grups d’experts', d:'versió per fotocopiar (opcional)', drive:'fitxes-experts'},
+  {id:'s2', tag:'S2', title:'Els cinc elements: grups d’experts', items:[
+    {main:true, kind:'Aplicatiu', t:'Grups d’experts · Els cinc elements', d:'Llegeix el teu element, respon les preguntes i prepara el guió.', page:'experts.html'},
+    {kind:'Vídeo', t:'Final de breaking, París 2024 · B-boys', url:'https://youtu.be/d-Vo866_jhY'},
+    {kind:'Vídeo', t:'Final de breaking, París 2024 · B-girls', url:'https://youtu.be/ld5ygnvN99k'},
+    {kind:'Àudio', t:'«Apache», Incredible Bongo Band', d:'cerca a YouTube', url:'https://www.youtube.com/results?search_query=Incredible+Bongo+Band+Apache'}
+  ]},
+  {id:'s3', tag:'S3', title:'Els cinc elements: tornada al grup base', items:[
+    {main:true, kind:'Aplicatiu', t:'Repassa el teu element', d:'Obre el teu guió (pestanya 5) i explica’l en 1 minut amb el gest del grup.', page:'experts.html'}
+  ]},
+  {id:'s4', tag:'S4', title:'De la baralla a la batalla', items:[
+    {main:true, kind:'Aplicatiu', t:'De la baralla a la batalla', d:'«I have a dream», la Zulu Nation i els acords de lliga de Beat Fighters.', page:'s4-batalla.html'},
     {kind:'Vídeo', t:'«I have a dream», Martin Luther King', url:'https://www.youtube.com/watch?v=9ppTiyxFSs0'},
-    {kind:'PDF', t:'Text del discurs en castellà', url:'https://igualdadynodiscriminacion.igualdad.gob.es/wp-content/uploads/2024/05/Martin_Luther_King_Tengo_un_sueno.pdf'},
-    {kind:'Web', t:'Brodas Bros', url:'https://www.brodasbros.com/'},
-    {kind:'Vídeo', t:'B-girl Sunny Choi', url:'https://www.youtube.com/watch?v=PCO8tNUTTbQ'},
-    {kind:'Vídeo', t:'Rap Queens: dones al hip-hop', url:'https://www.youtube.com/watch?v=kUcjDwwYj2g'}
+    {kind:'PDF', t:'Text del discurs en castellà', url:'https://igualdadynodiscriminacion.igualdad.gob.es/wp-content/uploads/2024/05/Martin_Luther_King_Tengo_un_sueno.pdf'}
   ]},
-  {id:'s3', tag:'S3', title:'D’on ve la manera de dir del rap?', items:[
-    {kind:'Presentació', t:'Precedents vocals', d:'Versembrant, tema 3.2', drive:'versembrant-3-2'},
-    {kind:'Vídeo', t:'Griot', url:'https://www.youtube.com/watch?v=u6MY3v-WA94'},
-    {kind:'Vídeo', t:'The Dozens', url:'https://www.youtube.com/watch?v=TR3LdLtsVU4'},
-    {kind:'Vídeo', t:'Scat: Ella Fitzgerald', url:'https://www.youtube.com/watch?v=PbL9vr4Q2LU'},
-    {kind:'Vídeo', t:'Talking blues', url:'https://www.youtube.com/watch?v=5rTMPGOoAfY'},
-    {kind:'Vídeo', t:'«Minnie the Moocher», Cab Calloway', url:'https://www.youtube.com/watch?v=8mq4UT4VnbE'},
-    {kind:'Àudio', t:'Soul: «Ike’s Rap», Isaac Hayes', url:'https://www.youtube.com/watch?v=epABdZcgI_I'},
-    {kind:'Vídeo', t:'Toasting: U-Roy', url:'https://www.youtube.com/watch?v=hMFbPbvKf8w'},
-    {kind:'Vídeo', t:'Spoken word: Gil Scott-Heron', url:'https://www.youtube.com/watch?v=qGaoXAwl9kw'},
-    {kind:'Vídeo', t:'«The Breaks», Kurtis Blow', url:'https://www.youtube.com/watch?v=nyYqkRv0D5g'}
-  ]},
-  {id:'s4', tag:'S4', title:'Com sona cada època i on són els elements?', items:[
-    {kind:'Presentació', t:'Èpoques i estils', d:'Versembrant, tema 4.2', drive:'versembrant-4-2'},
-    {kind:'Playlist', t:'Old School', url:'https://www.youtube.com/playlist?list=PLTcCgaZxTaEEGqPcBo3_RxYOhD2avM-CB'},
-    {kind:'Playlist', t:'Golden Age', url:'https://www.youtube.com/playlist?list=PLTcCgaZxTaEHEh7mFSAz9x_fN2Ft9xBF4'},
-    {kind:'Playlist', t:'Boom Bap', url:'https://www.youtube.com/playlist?list=PLTcCgaZxTaEGncHmghWEgaQ4O8yJKhEdb'},
-    {kind:'Playlist', t:'Trap', flag:'Revisa abans de projectar', url:'https://www.youtube.com/watch?v=uo14xGYwWd4&list=PLTcCgaZxTaEHFJHZPzgj75rUr1lHAWQyL'},
-    {kind:'Vídeo', t:'«I Can», Nas', d:'caçadors d’elements', url:'https://www.youtube.com/watch?v=RvVfgvHucRY'},
-    {kind:'Àudio', t:'«Für Elise», Beethoven', d:'el sample de «I Can»', url:'https://www.youtube.com/watch?v=PtwFOOOoGlo'},
-    {kind:'Àudio', t:'«Under Pressure», Queen & David Bowie', url:'https://youtu.be/a01QQZyl-_I'},
-    {kind:'Àudio', t:'«Ice Ice Baby», Vanilla Ice', url:'https://www.youtube.com/watch?v=rog8ou-ZepE'},
-    {kind:'Àudio', t:'«Good Times», Chic', d:'cerca a YouTube', url:'https://www.youtube.com/results?search_query=Chic+Good+Times'},
-    {kind:'Àudio', t:'«Rapper’s Delight», Sugarhill Gang', d:'cerca a YouTube', url:'https://www.youtube.com/results?search_query=Sugarhill+Gang+Rapper%27s+Delight'}
-  ]},
-  {id:'s5', tag:'S5', title:'Com arriba el hip-hop fins aquí?', items:[
-    {main:true, kind:'Joc', t:'Timeline · Bàsic', d:'12 targetes, una o dues per sessió. 5 intents. Compareu l’encert amb el de la S1.', page:'timeline-hiphop-12.html'},
-    {main:true, kind:'Joc', t:'Timeline · Mitjà', d:'25 targetes amb les fites principals. 3 intents. Compareu l’encert amb el de la S1.', page:'timeline-hiphop-25.html'},
-    {main:true, kind:'Joc', t:'Timeline · Extrem', d:'Les 35 targetes del dossier. 3 intents. Compareu l’encert amb el de la S1.', page:'timeline-hiphop.html'},
-    {kind:'Presentació', t:'L’evolució del hip-hop', d:'Versembrant, tema 4.1', drive:'versembrant-4-1'},
+  {id:'s5', tag:'S5', title:'El hip-hop aquí i què he après', items:[
+    {main:true, kind:'Joc', t:'Timeline final', d:'Les mateixes 12 targetes de la S1. Has millorat?', page:'timeline-hiphop-12.html'},
     {kind:'Vídeo', t:'«Amor al barri», Adala ft. Tribade', url:'https://www.youtube.com/watch?v=0xWvjShuj1w'},
-    {kind:'Vídeo', t:'Beat Street (1984)', url:'https://www.youtube.com/watch?v=RZsdtpC929M'},
-    {kind:'PDF', t:'Targetes Timeline amb any', d:'Dossier de L’Auditori, pp. 72–74', drive:'timeline-targetes'},
-    {kind:'PDF', t:'Solucionari del Timeline', d:'Dossier de L’Auditori, p. 27', drive:'timeline-solucionari'},
     {kind:'Playlist', t:'Rap en català', url:'https://www.youtube.com/playlist?list=PLTcCgaZxTaEGlZ_3PheVremqaNcy4labT'},
-    {kind:'Vídeo', t:'At Versaris', url:'https://www.youtube.com/watch?v=WAyaTWbrNS0'},
-    {kind:'Àudio', t:'El Nota', url:'https://elnota.bandcamp.com/track/fills-de-la-incertesa-amb-olalla-castro'},
-    {kind:'Vídeo', t:'ZOO', url:'https://www.youtube.com/watch?v=MI19iKuNeHg'},
     {kind:'Vídeo', t:'Pupil·les', url:'https://www.youtube.com/watch?v=dMMjY83G1sQ'},
-    {kind:'Vídeo', t:'Orishas', url:'https://www.youtube.com/watch?v=L2eV20UhkQk'},
-    {kind:'Vídeo', t:'Ana Tijoux', url:'https://www.youtube.com/watch?v=5G6q__7jQoU'}
+    {kind:'Vídeo', t:'At Versaris', url:'https://www.youtube.com/watch?v=WAyaTWbrNS0'}
   ]},
-  {id:'tota', tag:'S1–S5', title:'Per a tota la seqüència', items:[
-    {main:true, kind:'Guia', t:'Fes el teu fanzine', d:'Com plegar-lo, què hi va a cada pàgina i el pòster secret.', page:'fanzine.html'},
-    {kind:'Vídeo', t:'The Evolution of Hip-Hop (1979–2017)', d:'ampliació', url:'https://www.youtube.com/watch?v=PrqDFDEJMmU'},
-    {kind:'Vídeo', t:'The birth of hip-hop', d:'ampliació', url:'https://www.youtube.com/watch?v=10C-Q3NIlzU'}
+  {id:'tota', tag:'Voluntari', title:'Per anar més enllà', items:[
+    {main:true, kind:'Guia', t:'Fes el teu fanzine', d:'Voluntari. Com plegar-lo, què hi va a cada pàgina i el pòster secret. Lliurament: setmana del 30/11.', page:'fanzine.html'},
+    {main:true, kind:'Joc', t:'Timeline · Mitjà i Extrem', d:'25 i 35 targetes, per a qui vulgui un repte més gran.', page:'timeline-hiphop-25.html'},
+    {kind:'Vídeo', t:'The Evolution of Hip-Hop (1979–2017)', url:'https://www.youtube.com/watch?v=PrqDFDEJMmU'}
   ]}
 ];
 

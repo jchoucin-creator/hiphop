@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;600&family=Permanent+Marker&display=swap">
 <style>
-/* S2 (2a part) · Tornada al grup base, «I have a dream», acords de lliga i fanzine p. 2.
+/* S4 · «I have a dream», la Zulu Nation, acords de lliga i tancament.
    Pensada per obrir-la cada alumne al seu ordinador des de Classroom (sense projector). */
 :root{
   --bg:#ffffff; --ink:#141414; --soft:#5d5d58; --paper:#f3f3ef; --line:#d9d9d2;
@@ -95,9 +95,9 @@ td.blank{height:2.2em}
 <body>
 <div class="app">
   <header class="bar">
-    <div class="act">S2 · <span>2a part</span></div>
+    <div class="act">S4 · <span>De la baralla a la batalla</span></div>
     <div class="tools">
-      <span class="tnum" id="tnum">12:00</span>
+      <span class="tnum" id="tnum">15:00</span>
       <button type="button" id="tbtn">Inicia</button>
       <button type="button" id="smaller" aria-label="Lletra més petita">A−</button>
       <button type="button" id="bigger" aria-label="Lletra més gran">A+</button>
@@ -122,27 +122,7 @@ td.blank{height:2.2em}
 const ELEMENTS = ["El DJ","L'MC i el rap","El grafiti","El breaking","El coneixement"];
 
 const STEPS = [
-{ key:'base', label:'1 · Grup base', min:12, html:`
-  <h2>Tornada al grup base</h2>
-  <p class="lead">Cada expert explica el seu element en <strong>1 minut</strong>, amb el guió que va preparar i el gest del seu grup. La resta escolta i pren nota.</p>
-  <div class="turns" id="turns">
-    <ol class="order" id="order"></ol>
-    <div class="now" id="now">Preparats? Comença <span>El DJ</span>.</div>
-    <div class="row">
-      <span class="clock" id="clock">1:00</span>
-      <button type="button" class="primary" id="go">Comença el torn</button>
-      <button type="button" id="skip">Expert següent →</button>
-    </div>
-  </div>
-  <h3>Mentre escoltes</h3>
-  <p>Copia aquesta graella a la llibreta i omple una fila per a cada element:</p>
-  <table>
-    <thead><tr><th>Element</th><th>Una paraula clau</th><th>El gest (dibuix ràpid o descripció)</th></tr></thead>
-    <tbody>${ELEMENTS.map(e=>`<tr><td>${e}</td><td class="blank"></td><td class="blank"></td></tr>`).join('')}</tbody>
-  </table>
-  <p class="write">✎ Quan surti el teu element, ensenya la teva graella als companys: comproveu que tothom ha entès la paraula clau.</p>` },
-
-{ key:'somni', label:'2 · Un somni', min:12, html:`
+{ key:'somni', label:'1 · Un somni', min:15, html:`
   <h2>«I have a dream»</h2>
   <p>El 28 d'agost de 1963, Martin Luther King va parlar davant de més de 200.000 persones a Washington, en la lluita pels drets civils de la població afroamericana.</p>
   <a class="link" href="https://www.youtube.com/watch?v=9ppTiyxFSs0" target="_blank" rel="noopener">▶ Escolta el fragment del discurs</a>
@@ -160,7 +140,7 @@ const STEPS = [
     <li>Què té a veure el somni de Martin Luther King amb les batalles entre crews?</li>
   </ol>` },
 
-{ key:'acords', label:'3 · Acords de lliga', min:10, html:`
+{ key:'acords', label:'2 · Acords de lliga', min:25, html:`
   <h2>Els acords de la nostra lliga</h2>
   <p class="lead">A Beat Fighters fem batalles, no baralles. Amb el vostre grup base, escriviu <strong>un acord per a cada targeta</strong>.</p>
   <p>Feu servir aquesta frase: <span class="frame">A la nostra lliga, quan ___, nosaltres ___.</span></p>
@@ -179,34 +159,16 @@ const STEPS = [
     <li>Els quatre acords guanyadors seran les normes de la lliga. El professorat els penjarà a Classroom.</li>
   </ol>` },
 
-{ key:'fanzine', label:'4 · Fanzine p. 2', min:15, html:`
-  <h2>Fanzine · pàgina 2: «Els elements»</h2>
-  <p>Divideix la pàgina 2 del teu fanzine en quatre quadrants i un cercle al centre:</p>
-  <svg class="zine" viewBox="0 0 400 300" role="img" aria-label="Esquema de la pàgina: quatre quadrants (DJ, MC, grafiti, breaking) i un cercle central">
-    <rect x="4" y="4" width="392" height="292"/>
-    <line x1="200" y1="4" x2="200" y2="296"/><line x1="4" y1="150" x2="396" y2="150"/>
-    <text x="100" y="40">DJ</text><text x="300" y="40">MC i rap</text>
-    <text x="100" y="275">Grafiti</text><text x="300" y="275">Breaking</text>
-    <circle class="c" cx="200" cy="150" r="62"/>
-    <text class="tc" x="200" y="142">Coneixement</text>
-    <text class="tc" x="200" y="164" style="font-size:12px">+ la frase</text>
-  </svg>
-  <ol>
-    <li><strong>A cada quadrant:</strong> un dibuix senzill de l'element i la seva paraula clau (la tens a la graella del pas 1).</li>
-    <li><strong>Al cercle del centre:</strong> el cinquè element, el coneixement, i acaba aquesta frase amb les teves paraules:<br><span class="frame">Una batalla no és una baralla perquè…</span></li>
-    <li>Si acabes aviat, afegeix-hi el nom d'una persona de cada element (per exemple, Kool Herc, Pebblee Poo, Taki 183, Brodas Bros).</li>
-  </ol>
-  <a class="link" href="fanzine.html" target="_blank" rel="noopener">Guia del fanzine →</a>` },
-
-{ key:'final', label:'5 · Tancament', min:3, html:`
+{ key:'final', label:'3 · Tancament', min:10, html:`
   <h2>La cadena dels cinc elements</h2>
   <p class="lead">Tota la classe dreta. Marquem el pols amb palmes, com al <em>break</em>.</p>
   <ol>
     <li>Cada 8 palmes, el professorat diu un element: DJ, MC, grafiti, breaking, coneixement.</li>
-    <li>Tothom fa el gest que va inventar el grup d'experts d'aquell element.</li>
+    <li>Tothom fa el gest que va inventar el grup d'experts d'aquell element (els vau aprendre a la tornada al grup base).</li>
     <li>L'última ronda va més ràpida: els cinc gestos seguits, sense parar.</li>
   </ol>
-  <div class="quote">Una batalla no és una baralla.<small>Ho direm en veu alta tots junts per acabar.</small></div>` }
+  <div class="quote">Una batalla no és una baralla.<small>Ho direm en veu alta tots junts per acabar.</small></div>
+  <p class="write">✎ Voluntari: si vols anar més enllà, fes el teu <a href="fanzine.html" target="_blank" rel="noopener">fanzine</a> o el pòster secret. Es lliura la setmana del 30/11.</p>` }
 ];
 
 const tabs = document.getElementById('tabs'), panel = document.getElementById('panel');
@@ -272,8 +234,8 @@ function setupTurns(){
 
 /* Mida de lletra (es recorda en aquest navegador) */
 let fs=1.15;
-try{ const v=parseFloat(localStorage.getItem('s2b-fs')); if(v) fs=v; }catch(e){}
-const applyFs=()=>{ document.documentElement.style.setProperty('--fs',fs+'rem'); try{localStorage.setItem('s2b-fs',fs);}catch(e){} };
+try{ const v=parseFloat(localStorage.getItem('s4-fs')); if(v) fs=v; }catch(e){}
+const applyFs=()=>{ document.documentElement.style.setProperty('--fs',fs+'rem'); try{localStorage.setItem('s4-fs',fs);}catch(e){} };
 document.getElementById('bigger').onclick=()=>{ fs=Math.min(2.4,+(fs+.15).toFixed(2)); applyFs(); };
 document.getElementById('smaller').onclick=()=>{ fs=Math.max(.9,+(fs-.15).toFixed(2)); applyFs(); };
 applyFs();
