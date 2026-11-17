@@ -131,13 +131,13 @@ td.blank{height:2.2em}
 <script>
 /* Àudios: si l'enllaç directe no funciona, la pàgina ofereix una cerca a YouTube. */
 const A = {
-  griot:   {t:'Griot', id:'u6MY3v-WA94', q:'griot kora storytelling Mali'},
-  talking: {t:'Talking blues', id:'5rTMPGOoAfY', q:'talking blues'},
-  scat:    {t:'Scat · Ella Fitzgerald', id:'PbL9vr4Q2LU', q:'Ella Fitzgerald scat'},
-  minnie:  {t:'«Minnie the Moocher» · Cab Calloway (1931)', id:'8mq4UT4VnbE', q:'Cab Calloway Minnie the Moocher'},
-  ike:     {t:'«Ike’s Rap» · Isaac Hayes (1971)', id:'epABdZcgI_I', q:'Isaac Hayes Ike\'s Rap'},
-  gil:     {t:'Spoken word · Gil Scott-Heron', id:'qGaoXAwl9kw', q:'Gil Scott-Heron The Revolution Will Not Be Televised'},
-  uroy:    {t:'Toasting · U-Roy', id:'hMFbPbvKf8w', q:'U-Roy toasting'},
+  griot:   {t:'Griot cantant amb la kora · Costa d’Ivori', id:'YgbYNkSUGwk', q:'griot singing kora'},
+  talking: {t:'Talking blues · Woody Guthrie, «Talking Dust Bowl Blues»', id:'vlxPf6KT5GI', q:'Woody Guthrie Talking Dust Bowl Blues'},
+  scat:    {t:'Scat · Ella Fitzgerald, «How High the Moon» (Berlín, 1960)', id:'iR1__k-BxhY', q:'Ella Fitzgerald How High the Moon Berlin 1960'},
+  minnie:  {t:'Crida i resposta · Cab Calloway, «Minnie the Moocher» (1931)', id:'zJQlcFyx9ew', q:'Cab Calloway Minnie the Moocher 1931'},
+  ike:     {t:'Soul · Isaac Hayes, «Ike’s Rap II» (1971)', id:'epABdZcgI_I', q:'Isaac Hayes Ike\'s Rap II'},
+  gil:     {t:'Spoken word · Gil Scott-Heron, «The Revolution Will Not Be Televised» (1971)', id:'vwSRqaZGsPw', q:'Gil Scott-Heron The Revolution Will Not Be Televised'},
+  uroy:    {t:'Toasting · U-Roy, «Wake the Town»', id:'MXnTWXDTlZU', q:'U-Roy Wake the Town'},
   breaks:  {t:'«The Breaks» · Kurtis Blow (1980)', id:'nyYqkRv0D5g', q:'Kurtis Blow The Breaks'}
 };
 const yt = id => 'https://www.youtube.com/watch?v='+id;
@@ -159,6 +159,8 @@ const STEPS = [
     <li>Cadascú omple la taula a la seva llibreta.</li>
     <li>Quan s'acabi el temps de la parada, passeu a la següent encara que no ho hàgiu escoltat tot.</li>
   </ul>
+  <a class="link" href="https://drive.google.com/file/d/1YFbvlP95qF_YJ35PwPJ1h3K60KA8o1wv/view?usp=sharing" target="_blank" rel="noopener">📄 Presentació: precedents vocals del rap (Versembrant)</a>
+  <p>Si us encalleu a alguna parada, la presentació us pot ajudar.</p>
   <h3>Copieu aquesta taula a la llibreta</h3>
   <table><thead><tr><th>Estil</th><th>D’on ve</th><th>Què té de rap</th></tr></thead>
   <tbody>${'<tr><td class="blank"></td><td class="blank"></td><td class="blank"></td></tr>'.repeat(4)}</tbody></table>` },
