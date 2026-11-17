@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>D’on ve la manera de dir del rap?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;600&family=Permanent+Marker&display=swap">
+<style>
+/* Precedents del rap · ruta per estacions en grup, autònoma, a l'ordinador de cada grup.
+   Pensada per obrir-la cada alumne al seu ordinador des de Classroom (sense projector). */
+:root{
+  --bg:#ffffff; --ink:#141414; --soft:#5d5d58; --paper:#f3f3ef; --line:#d9d9d2;
+  --mark:#ffd60a; --on-mark:#141414;
+  --display:"Archivo Black","Arial Black",Impact,sans-serif;
+  --body:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --hand:"Permanent Marker","Comic Sans MS",cursive;
+  --fs:1.15rem;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121211;--ink:#f1f1ec;--soft:#b3b3ab;--paper:#1d1d1a;--line:#3a3a36;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#121211;--ink:#f1f1ec;--soft:#b3b3ab;--paper:#1d1d1a;--line:#3a3a36;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);line-height:1.5;padding:0 16px}
+.app{max-width:1100px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column}
+button{font:inherit;font-weight:600;background:var(--bg);color:var(--ink);border:2px solid var(--ink);padding:8px 14px;cursor:pointer}
+button:hover{background:var(--paper)}
+button.primary{background:var(--ink);color:var(--bg)}
+button:focus-visible,a:focus-visible{outline:3px solid var(--mark);outline-offset:2px}
+button[disabled]{opacity:.35;cursor:default}
+a{color:inherit}
+
+.bar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;padding:14px 0;border-bottom:3px solid var(--ink)}
+.act{font-family:var(--display);font-size:clamp(1rem,1.8vw,1.3rem)}
+.act span{background:var(--mark);color:var(--on-mark);padding:0 .25em}
+.tools{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.tnum{font-family:var(--display);font-variant-numeric:tabular-nums;font-size:1.25rem;min-width:4ch;text-align:right}
+.tnum.low{background:var(--mark);color:var(--on-mark);padding:0 .2em}
+
+.head{padding:24px 0 6px}
+.eyebrow{font-size:.85rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--soft);margin:0 0 6px}
+h1{font-family:var(--display);font-size:clamp(2rem,5.5vw,4rem);line-height:.95;margin:0;text-wrap:balance}
+h1 em{font-style:normal;background:var(--mark);color:var(--on-mark);padding:0 .1em}
+
+.tabs{display:flex;gap:6px;flex-wrap:wrap;padding:16px 0 4px}
+.tabs button{font-size:.95rem}
+.tabs button[aria-selected="true"]{background:var(--mark);color:var(--on-mark)}
+.tabs .min{font-weight:400;opacity:.75}
+
+.panel{font-size:var(--fs);max-width:72ch;padding:14px 0 24px;flex:1}
+.panel h2{font-family:var(--display);font-size:1.6em;line-height:1.08;margin:0 0 .5em}
+.panel h3{font-family:var(--display);font-size:1.1em;margin:1.2em 0 .4em}
+.panel p{margin:0 0 .85em}
+.panel ol,.panel ul{margin:0 0 .9em;padding-left:1.4em;display:grid;gap:.5em}
+.lead{border-left:6px solid var(--mark);padding-left:14px;font-size:1.08em}
+.quote{font-family:var(--display);font-size:1.35em;line-height:1.2;border:3px solid var(--ink);padding:16px 18px;margin:0 0 1em;background:var(--paper)}
+.quote small{display:block;font-family:var(--body);font-size:.6em;font-weight:600;color:var(--soft);margin-top:8px}
+.write{font-family:var(--hand);font-size:1.1em}
+.link{display:inline-flex;align-items:center;gap:8px;font-weight:600;border:2px solid var(--ink);padding:8px 14px;text-decoration:none;margin:0 0 1em}
+.link:hover{background:var(--mark);color:var(--on-mark)}
+
+/* Rellotge de torns */
+.turns{border:3px solid var(--ink);padding:14px 16px;margin:0 0 1.1em;display:grid;gap:12px}
+.turns .now{font-family:var(--display);font-size:1.6em;line-height:1.1}
+.turns .now span{background:var(--mark);color:var(--on-mark);padding:0 .15em}
+.turns .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.turns .clock{font-family:var(--display);font-size:2em;font-variant-numeric:tabular-nums}
+.order{list-style:none;padding:0!important;display:flex!important;flex-wrap:wrap;gap:6px!important;margin:0!important}
+.order li{border:2px solid var(--ink);padding:2px 10px;font-weight:600}
+.order li.done{opacity:.4;text-decoration:line-through}
+.order li.cur{background:var(--ink);color:var(--bg)}
+
+/* Graella per copiar */
+table{border-collapse:collapse;width:100%;margin:0 0 1em;font-size:.95em}
+th,td{border:2px solid var(--ink);padding:8px 10px;text-align:left;vertical-align:top}
+th{font-family:var(--display);font-weight:400;background:var(--paper)}
+td.blank{height:2.2em}
+
+/* Targetes d'acords */
+.cards{list-style:none;padding:0!important;display:grid!important;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px!important}
+.cards li{border:3px solid var(--ink);padding:14px}
+.cards b{font-family:var(--display);font-weight:400;font-size:1.15em;display:block;margin-bottom:4px}
+.frame{background:var(--mark);color:var(--on-mark);padding:2px 6px;font-weight:600}
+
+/* Esquema del fanzine */
+.zine{max-width:420px;width:100%;height:auto;display:block;margin:0 0 1em}
+.zine rect,.zine line{fill:none;stroke:currentColor;stroke-width:3}
+.zine .c{fill:var(--mark);stroke:currentColor;stroke-width:3}
+.zine text{fill:currentColor;font-family:var(--body);font-weight:600;font-size:15px;text-anchor:middle}
+.zine .tc{fill:var(--on-mark)}
+
+.nav{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:12px 0 20px;border-top:3px solid var(--ink)}
+@media (max-width:560px){th,td{padding:6px}}
+
+/* Estacions */
+.map{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:0 0 1em;font-weight:600}
+.map span{border:2px solid var(--ink);padding:4px 10px}
+.map span.on{background:var(--mark);color:var(--on-mark)}
+.map i{font-style:normal;opacity:.6}
+.audio{list-style:none;padding:0!important;display:grid!important;gap:10px!important;margin:0 0 1em}
+.audio li{border:2px solid var(--ink);padding:10px 14px;display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;justify-content:space-between}
+.audio b{font-family:var(--display);font-weight:400}
+.audio a{font-weight:600}
+.audio .st{font-size:.8em;color:var(--soft)}
+.roles{list-style:none;padding:0!important;display:grid!important;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px!important}
+.roles li{border:2px solid var(--ink);padding:10px 12px}
+.roles b{font-family:var(--display);font-weight:400;display:block}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="bar">
+    <div class="act">Hip-hop · <span>Precedents del rap</span></div>
+    <div class="tools">
+      <span class="tnum" id="tnum">5:00</span>
+      <button type="button" id="tbtn">Inicia</button>
+      <button type="button" id="smaller" aria-label="Lletra més petita">A−</button>
+      <button type="button" id="bigger" aria-label="Lletra més gran">A+</button>
+    </div>
+  </header>
+  <div class="head">
+    <p class="eyebrow">Música · 2n ESO · Arrels del hip-hop</p>
+    <h1>D’on ve la manera de dir del <em>rap</em>?</h1>
+  </div>
+  <div class="tabs" role="tablist" id="tabs"></div>
+  <main class="panel" role="tabpanel" id="panel"></main>
+  <nav class="nav">
+    <button type="button" id="prev">← Anterior</button>
+    <button type="button" class="primary" id="next">Següent →</button>
+  </nav>
+</div>
+<script>
+/* Àudios: si l'enllaç directe no funciona, la pàgina ofereix una cerca a YouTube. */
+const A = {
+  griot:   {t:'Griot', id:'u6MY3v-WA94', q:'griot kora storytelling Mali'},
+  talking: {t:'Talking blues', id:'5rTMPGOoAfY', q:'talking blues'},
+  scat:    {t:'Scat · Ella Fitzgerald', id:'PbL9vr4Q2LU', q:'Ella Fitzgerald scat'},
+  minnie:  {t:'«Minnie the Moocher» · Cab Calloway (1931)', id:'8mq4UT4VnbE', q:'Cab Calloway Minnie the Moocher'},
+  ike:     {t:'«Ike’s Rap» · Isaac Hayes (1971)', id:'epABdZcgI_I', q:'Isaac Hayes Ike\'s Rap'},
+  gil:     {t:'Spoken word · Gil Scott-Heron', id:'qGaoXAwl9kw', q:'Gil Scott-Heron The Revolution Will Not Be Televised'},
+  uroy:    {t:'Toasting · U-Roy', id:'hMFbPbvKf8w', q:'U-Roy toasting'},
+  breaks:  {t:'«The Breaks» · Kurtis Blow (1980)', id:'nyYqkRv0D5g', q:'Kurtis Blow The Breaks'}
+};
+const yt = id => 'https://www.youtube.com/watch?v='+id;
+const ys = q => 'https://www.youtube.com/results?search_query='+encodeURIComponent(q);
+const audio = keys => `<ul class="audio">${keys.map(k=>`<li data-k="${k}"><b>${A[k].t}</b><span><a href="${yt(A[k].id)}" target="_blank" rel="noopener">▶ Escolta</a> <span class="st"></span></span></li>`).join('')}</ul>`;
+const MAP = ['Àfrica','EUA','Jamaica','Bronx'];
+const map = on => `<div class="map">${MAP.map((m,i)=>`<span class="${m===on?'on':''}">${m}</span>${i<3?'<i>→</i>':''}`).join('')}</div>`;
+const passport = '<p class="write">✎ Passaport de la veu (a la llibreta): <b>precedent</b> · <b>d’on ve</b> · <b>què té de rap</b> (rima, ritme parlat, improvisació, crida i resposta o paraula sobre música).</p>';
+
+const STEPS = [
+{ key:'inici', label:'0 · Com treballem', min:5, html:`
+  <h2>Detectius de la veu</h2>
+  <p class="lead">El rap no va sortir del no-res. Abans hi havia moltes maneres de <strong>dir</strong> les paraules amb ritme. En grup, fareu una ruta per quatre llocs i descobrireu d’on ve la manera de dir del rap.</p>
+  <h3>Repartiu els rols</h3>
+  <ul class="roles">
+    <li><b>DJ</b>Posa els àudios al seu ordinador perquè els escolti tot el grup (volum baix).</li>
+    <li><b>Lector/a</b>Llegeix en veu alta el text de cada estació.</li>
+    <li><b>Secretari/ària</b>Apunta el passaport de la veu a la llibreta del grup.</li>
+    <li><b>Guardià/ana del temps</b>Controla el cronòmetre de cada estació.</li>
+  </ul>
+  <h3>Prepareu la llibreta</h3>
+  <table><thead><tr><th>Precedent</th><th>D’on ve</th><th>Què té de rap</th></tr></thead>
+  <tbody>${'<tr><td class="blank"></td><td class="blank"></td><td class="blank"></td></tr>'.repeat(4)}</tbody></table>
+  <p>Cada estació té el seu temps. Quan s’acabi, passeu a la següent encara que no ho hàgiu escoltat tot.</p>` },
+
+{ key:'africa', label:'1 · Àfrica', min:6, html:`
+  ${map('Àfrica')}
+  <h2>Els griots</h2>
+  <p>A l’Àfrica occidental (Mali, Senegal, Gàmbia…), els <strong>griots</strong> són narradors i músics. Guarden la història del seu poble i l’expliquen de memòria, sovint acompanyats d’un instrument de corda, la kora. Diuen les paraules amb un ritme molt marcat, i el públic els respon.</p>
+  ${audio(['griot'])}
+  <h3>Pista</h3><p>Fixeu-vos en com <strong>explica una història</strong> amb ritme. Un raper també explica històries.</p>
+  ${passport}` },
+
+{ key:'eua', label:'2 · EUA', min:10, html:`
+  ${map('EUA')}
+  <h2>Jocs de paraules, blues, jazz i soul</h2>
+  <p>Les persones africanes esclavitzades als Estats Units van portar-hi la seva manera de dir. D’aquí van sortir moltes formes de fer música amb la paraula:</p>
+  <ul>
+    <li><strong>Les dozens:</strong> un joc verbal de reptes en rima entre dues persones. És l’avantpassat de les batalles de rap. La norma de la nostra lliga: es valora l’enginy, mai no s’ataca la persona.</li>
+    <li><strong>El talking blues:</strong> blues en què es parla més que no pas es canta.</li>
+    <li><strong>L’scat (jazz):</strong> improvisar amb la veu fent síl·labes sense significat.</li>
+    <li><strong>La crida i resposta:</strong> qui canta llança una frase i el públic la repeteix.</li>
+    <li><strong>El soul i l’spoken word:</strong> parlar o recitar poesia per sobre de la música.</li>
+  </ul>
+  <p>Repartiu-vos els àudios: cada membre del grup n’escolta un i l’explica als altres.</p>
+  ${audio(['talking','scat','minnie','ike','gil'])}
+  <h3>Pista</h3><p>A «Minnie the Moocher», compteu quantes vegades el públic respon a Cab Calloway.</p>
+  ${passport}` },
+
+{ key:'jamaica', label:'3 · Jamaica', min:6, html:`
+  ${map('Jamaica')}
+  <h2>El toasting</h2>
+  <p>A Jamaica, els <em>sound systems</em> eren equips de so enormes que es muntaven al carrer per fer festes. El DJ posava la versió instrumental d’una cançó i hi parlava i cantava per sobre: això és el <strong>toasting</strong>. U-Roy n’és un dels mestres.</p>
+  <p>Kool Herc, el DJ de la festa del Bronx del 1973, havia nascut a Jamaica i va portar aquesta idea a Nova York.</p>
+  ${audio(['uroy'])}
+  <h3>Pista</h3><p>Què fa el DJ jamaicà que també fa un MC?</p>
+  ${passport}` },
+
+{ key:'bronx', label:'4 · Bronx', min:6, html:`
+  ${map('Bronx')}
+  <h2>Neix el rap</h2>
+  <p>Al Bronx, tot es barreja: la història explicada dels griots, els reptes de les dozens, la crida i resposta, la paraula sobre la música del soul i el toasting jamaicà. L’MC agafa el micròfon i rima sobre el <em>break</em> del DJ. «The Breaks», de Kurtis Blow, va ser un dels primers grans èxits del rap.</p>
+  ${audio(['breaks'])}
+  <h3>Pista</h3><p>Hi trobeu crida i resposta? I rima?</p>
+  ${passport}` },
+
+{ key:'crida', label:'5 · Crida i resposta', min:12, html:`
+  <h2>La crida i resposta del grup</h2>
+  <p class="lead">Ara ho feu vosaltres, al vostre lloc i amb veu baixa.</p>
+  <ol>
+    <li>Marqueu el pols amb un cop suau a la taula: 1, 2, 3, 4.</li>
+    <li>Per torns, cadascú fa de <strong>MC</strong> i diu una frase curta de 4 temps sobre el hip-hop (per exemple: <em>«Del Bronx al món!»</em>).</li>
+    <li>La resta respon amb una frase o un so que hàgiu pactat (per exemple: <em>«Hip-hop!»</em>).</li>
+    <li>Trieu la millor crida i resposta del grup i apunteu-la a la llibreta.</li>
+  </ol>
+  <p class="write">Qui no vulgui fer d’MC pot proposar un so o un gest. Ningú no està obligat a fer d’MC.</p>
+  <p><strong>Idea per a Beat Fighters:</strong> la vostra crida i resposta pot ser el crit de la vostra banda.</p>` },
+
+{ key:'final', label:'6 · Tancament', min:5, html:`
+  <h2>El precedent guanyador</h2>
+  <p>Amb el grup, mireu el passaport de la veu i decidiu:</p>
+  <div class="quote">Quin precedent s’assembla més al rap, i per què?</div>
+  <p>Escriviu-ho a la llibreta en una frase:</p>
+  <p><span class="frame">El ___ s’assembla més al rap perquè ___.</span></p>
+  <p>El portaveu ho llegirà quan el professorat ho demani.</p>` }
+];
+
+/* Comprovació dels enllaços: si un vídeo no està disponible, s'ofereix la cerca a YouTube. */
+const status={};
+function checkLinks(){
+  document.querySelectorAll('.audio li').forEach(li=>{
+    const k=li.dataset.k, st=li.querySelector('.st'), a=li.querySelector('a');
+    const apply=ok=>{ if(ok===false){ a.href=ys(A[k].q); a.textContent='🔎 Cerca a YouTube'; st.textContent='(el vídeo original no està disponible)'; } };
+    if(k in status){ apply(status[k]); return; }
+    fetch('https://noembed.com/embed?url='+encodeURIComponent(yt(A[k].id)))
+      .then(r=>r.json()).then(d=>{ status[k]=!d.error; apply(status[k]); })
+      .catch(()=>{});
+  });
+}
+const tabs = document.getElementById('tabs'), panel = document.getElementById('panel');
+let cur = 0;
+function render(){
+  tabs.innerHTML = STEPS.map((s,i)=>`<button role="tab" type="button" aria-selected="${i===cur}" data-i="${i}">${s.label} <span class="min">${s.min}'</span></button>`).join('');
+  tabs.querySelectorAll('button').forEach(b=>b.onclick=()=>go(+b.dataset.i));
+  panel.innerHTML = STEPS[cur].html;
+  document.getElementById('prev').disabled = cur===0;
+  document.getElementById('next').disabled = cur===STEPS.length-1;
+  resetTimer(STEPS[cur].min);
+  checkLinks();
+}
+function go(i){ cur=i; try{history.replaceState(null,'','#'+STEPS[i].key);}catch(e){} render(); window.scrollTo(0,0); }
+document.getElementById('prev').onclick=()=>cur>0&&go(cur-1);
+document.getElementById('next').onclick=()=>cur<STEPS.length-1&&go(cur+1);
+document.addEventListener('keydown',e=>{ if(e.target.closest('button')) return;
+  if(e.key==='ArrowRight'&&cur<STEPS.length-1) go(cur+1);
+  if(e.key==='ArrowLeft'&&cur>0) go(cur-1); });
+
+/* Cronòmetre de l'apartat */
+let left=0, tid=null, total=0;
+const tnum=document.getElementById('tnum'), tbtn=document.getElementById('tbtn');
+const fmt=s=>`${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`;
+function show(){ tnum.textContent=fmt(left); tnum.classList.toggle('low', left<=60); }
+function resetTimer(m){ clearInterval(tid); tid=null; total=left=m*60; tbtn.textContent='Inicia'; show(); }
+tbtn.onclick=()=>{
+  if(tid){ clearInterval(tid); tid=null; tbtn.textContent='Continua'; return; }
+  if(left<=0) left=total;
+  tbtn.textContent='Pausa';
+  tid=setInterval(()=>{ left--; show(); if(left<=0){ clearInterval(tid); tid=null; tnum.textContent='Temps!'; tbtn.textContent='Torna a començar'; } },1000);
+};
+
+/* Torns d'1 minut per expert */
+let tIdx=0, tLeft=60, tTid=null;
+function setupTurns(){
+  clearInterval(tTid); tTid=null; tIdx=0; tLeft=60;
+  const order=document.getElementById('order'), now=document.getElementById('now'),
+        clock=document.getElementById('clock'), goB=document.getElementById('go'), skip=document.getElementById('skip');
+  const paint=()=>{
+    order.innerHTML=ELEMENTS.map((e,i)=>`<li class="${i<tIdx?'done':i===tIdx?'cur':''}">${i+1} · ${e}</li>`).join('');
+    clock.textContent=fmt(Math.max(tLeft,0));
+    if(tIdx>=ELEMENTS.length){ now.innerHTML='Tots els experts han explicat el seu element. <span>Bona feina!</span>'; goB.disabled=true; skip.disabled=true; clock.textContent='—'; }
+    else now.innerHTML=`Ara explica: <span>${ELEMENTS[tIdx]}</span>`;
+  };
+  goB.onclick=()=>{
+    if(tTid){ clearInterval(tTid); tTid=null; goB.textContent='Continua'; return; }
+    goB.textContent='Pausa';
+    tTid=setInterval(()=>{ tLeft--; paint(); if(tLeft<=0){ clearInterval(tTid); tTid=null; goB.textContent='Temps! Expert següent'; goB.onclick=next; } },1000);
+  };
+  const next=()=>{ clearInterval(tTid); tTid=null; tIdx++; tLeft=60; goB.textContent='Comença el torn'; goB.onclick=null; setupHandlers(); paint(); };
+  function setupHandlers(){
+    goB.onclick=()=>{
+      if(tTid){ clearInterval(tTid); tTid=null; goB.textContent='Continua'; return; }
+      goB.textContent='Pausa';
+      tTid=setInterval(()=>{ tLeft--; paint(); if(tLeft<=0){ clearInterval(tTid); tTid=null; goB.textContent='Temps! Expert següent →'; goB.onclick=next; } },1000);
+    };
+  }
+  setupHandlers();
+  skip.onclick=next;
+  paint();
+}
+
+/* Mida de lletra (es recorda en aquest navegador) */
+let fs=1.15;
+try{ const v=parseFloat(localStorage.getItem('prec-fs')); if(v) fs=v; }catch(e){}
+const applyFs=()=>{ document.documentElement.style.setProperty('--fs',fs+'rem'); try{localStorage.setItem('prec-fs',fs);}catch(e){} };
+document.getElementById('bigger').onclick=()=>{ fs=Math.min(2.4,+(fs+.15).toFixed(2)); applyFs(); };
+document.getElementById('smaller').onclick=()=>{ fs=Math.max(.9,+(fs-.15).toFixed(2)); applyFs(); };
+applyFs();
+
+function fromHash(){ const i=STEPS.findIndex(s=>'#'+s.key===location.hash); if(i>=0 && i!==cur){ cur=i; render(); } }
+const start=STEPS.findIndex(s=>'#'+s.key===location.hash);
+cur = start>=0 ? start : 0;
+render();
+window.addEventListener('hashchange', fromHash);
+</script>
+</body>
+</html>
