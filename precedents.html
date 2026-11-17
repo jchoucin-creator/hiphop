@@ -145,30 +145,30 @@ const ys = q => 'https://www.youtube.com/results?search_query='+encodeURICompone
 const audio = keys => `<ul class="audio">${keys.map(k=>`<li data-k="${k}"><b>${A[k].t}</b><span><a href="${yt(A[k].id)}" target="_blank" rel="noopener">▶ Escolta</a> <span class="st"></span></span></li>`).join('')}</ul>`;
 const MAP = ['Àfrica','EUA','Jamaica','Bronx'];
 const map = on => `<div class="map">${MAP.map((m,i)=>`<span class="${m===on?'on':''}">${m}</span>${i<3?'<i>→</i>':''}`).join('')}</div>`;
-const passport = '<p class="write">✎ Passaport de la veu (a la llibreta): <b>precedent</b> · <b>d’on ve</b> · <b>què té de rap</b> (rima, ritme parlat, improvisació, crida i resposta o paraula sobre música).</p>';
+const passport = '<p class="write">✎ A la taula de la llibreta: el nom de l’estil, d’on ve i què té de rap (rima, parlar amb ritme, improvisar, crida i resposta o parlar sobre la música).</p>';
 
 const STEPS = [
 { key:'inici', label:'0 · Com treballem', min:5, html:`
-  <h2>Detectius de la veu</h2>
-  <p class="lead">El rap no va sortir del no-res. Abans hi havia moltes maneres de <strong>dir</strong> les paraules amb ritme. En grup, fareu una ruta per quatre llocs i descobrireu d’on ve la manera de dir del rap.</p>
-  <h3>Repartiu els rols</h3>
-  <ul class="roles">
-    <li><b>DJ</b>Posa els àudios al seu ordinador perquè els escolti tot el grup (volum baix).</li>
-    <li><b>Lector/a</b>Llegeix en veu alta el text de cada estació.</li>
-    <li><b>Secretari/ària</b>Apunta el passaport de la veu a la llibreta del grup.</li>
-    <li><b>Guardià/ana del temps</b>Controla el cronòmetre de cada estació.</li>
+  <h2>Què heu de fer</h2>
+  <p class="lead">El rap no va sortir del no-res. Abans ja hi havia moltes maneres de dir les paraules amb ritme. Ho descobrireu en quatre parades: Àfrica, EUA, Jamaica i el Bronx.</p>
+  <h3>Com us ho repartiu</h3>
+  <ul>
+    <li>Treballeu en grups de 4. Cadascú amb el seu ordinador.</li>
+    <li>A cada parada, una persona diferent llegeix el text en veu alta.</li>
+    <li>Escolteu els àudios tots junts, amb el volum baix. A la parada dels EUA n'hi ha cinc: repartiu-vos-els i expliqueu als altres què heu escoltat.</li>
+    <li>Cadascú omple la taula a la seva llibreta.</li>
+    <li>Quan s'acabi el temps de la parada, passeu a la següent encara que no ho hàgiu escoltat tot.</li>
   </ul>
-  <h3>Prepareu la llibreta</h3>
-  <table><thead><tr><th>Precedent</th><th>D’on ve</th><th>Què té de rap</th></tr></thead>
-  <tbody>${'<tr><td class="blank"></td><td class="blank"></td><td class="blank"></td></tr>'.repeat(4)}</tbody></table>
-  <p>Cada estació té el seu temps. Quan s’acabi, passeu a la següent encara que no ho hàgiu escoltat tot.</p>` },
+  <h3>Copieu aquesta taula a la llibreta</h3>
+  <table><thead><tr><th>Estil</th><th>D’on ve</th><th>Què té de rap</th></tr></thead>
+  <tbody>${'<tr><td class="blank"></td><td class="blank"></td><td class="blank"></td></tr>'.repeat(4)}</tbody></table>` },
 
 { key:'africa', label:'1 · Àfrica', min:6, html:`
   ${map('Àfrica')}
   <h2>Els griots</h2>
   <p>A l’Àfrica occidental (Mali, Senegal, Gàmbia…), els <strong>griots</strong> són narradors i músics. Guarden la història del seu poble i l’expliquen de memòria, sovint acompanyats d’un instrument de corda, la kora. Diuen les paraules amb un ritme molt marcat, i el públic els respon.</p>
   ${audio(['griot'])}
-  <h3>Pista</h3><p>Fixeu-vos en com <strong>explica una història</strong> amb ritme. Un raper també explica històries.</p>
+  <h3>Fixeu-vos-hi</h3><p>Fixeu-vos en com <strong>explica una història</strong> amb ritme. Un raper també explica històries.</p>
   ${passport}` },
 
 { key:'eua', label:'2 · EUA', min:10, html:`
@@ -182,9 +182,9 @@ const STEPS = [
     <li><strong>La crida i resposta:</strong> qui canta llança una frase i el públic la repeteix.</li>
     <li><strong>El soul i l’spoken word:</strong> parlar o recitar poesia per sobre de la música.</li>
   </ul>
-  <p>Repartiu-vos els àudios: cada membre del grup n’escolta un i l’explica als altres.</p>
+  <p>Repartiu-vos els cinc àudios. Cadascú n’escolta un o dos i explica als altres com sona.</p>
   ${audio(['talking','scat','minnie','ike','gil'])}
-  <h3>Pista</h3><p>A «Minnie the Moocher», compteu quantes vegades el públic respon a Cab Calloway.</p>
+  <h3>Fixeu-vos-hi</h3><p>A «Minnie the Moocher», compteu quantes vegades el públic respon a Cab Calloway.</p>
   ${passport}` },
 
 { key:'jamaica', label:'3 · Jamaica', min:6, html:`
@@ -193,7 +193,7 @@ const STEPS = [
   <p>A Jamaica, els <em>sound systems</em> eren equips de so enormes que es muntaven al carrer per fer festes. El DJ posava la versió instrumental d’una cançó i hi parlava i cantava per sobre: això és el <strong>toasting</strong>. U-Roy n’és un dels mestres.</p>
   <p>Kool Herc, el DJ de la festa del Bronx del 1973, havia nascut a Jamaica i va portar aquesta idea a Nova York.</p>
   ${audio(['uroy'])}
-  <h3>Pista</h3><p>Què fa el DJ jamaicà que també fa un MC?</p>
+  <h3>Fixeu-vos-hi</h3><p>Què fa el DJ jamaicà que també fa un MC?</p>
   ${passport}` },
 
 { key:'bronx', label:'4 · Bronx', min:6, html:`
@@ -201,7 +201,7 @@ const STEPS = [
   <h2>Neix el rap</h2>
   <p>Al Bronx, tot es barreja: la història explicada dels griots, els reptes de les dozens, la crida i resposta, la paraula sobre la música del soul i el toasting jamaicà. L’MC agafa el micròfon i rima sobre el <em>break</em> del DJ. «The Breaks», de Kurtis Blow, va ser un dels primers grans èxits del rap.</p>
   ${audio(['breaks'])}
-  <h3>Pista</h3><p>Hi trobeu crida i resposta? I rima?</p>
+  <h3>Fixeu-vos-hi</h3><p>Hi trobeu crida i resposta? I rima?</p>
   ${passport}` },
 
 { key:'crida', label:'5 · Crida i resposta', min:12, html:`
@@ -209,20 +209,20 @@ const STEPS = [
   <p class="lead">Ara ho feu vosaltres, al vostre lloc i amb veu baixa.</p>
   <ol>
     <li>Marqueu el pols amb un cop suau a la taula: 1, 2, 3, 4.</li>
-    <li>Per torns, cadascú fa de <strong>MC</strong> i diu una frase curta de 4 temps sobre el hip-hop (per exemple: <em>«Del Bronx al món!»</em>).</li>
+    <li>Per torns, cadascú diu una frase curta de 4 temps sobre el hip-hop (per exemple: <em>«Del Bronx al món!»</em>).</li>
     <li>La resta respon amb una frase o un so que hàgiu pactat (per exemple: <em>«Hip-hop!»</em>).</li>
     <li>Trieu la millor crida i resposta del grup i apunteu-la a la llibreta.</li>
   </ol>
-  <p class="write">Qui no vulgui fer d’MC pot proposar un so o un gest. Ningú no està obligat a fer d’MC.</p>
+  <p class="write">Qui no vulgui dir una frase pot proposar un so o un gest.</p>
   <p><strong>Idea per a Beat Fighters:</strong> la vostra crida i resposta pot ser el crit de la vostra banda.</p>` },
 
 { key:'final', label:'6 · Tancament', min:5, html:`
-  <h2>El precedent guanyador</h2>
-  <p>Amb el grup, mireu el passaport de la veu i decidiu:</p>
+  <h2>Quin s’assembla més al rap?</h2>
+  <p>Mireu la taula de la llibreta i decidiu-ho entre tots:</p>
   <div class="quote">Quin precedent s’assembla més al rap, i per què?</div>
   <p>Escriviu-ho a la llibreta en una frase:</p>
   <p><span class="frame">El ___ s’assembla més al rap perquè ___.</span></p>
-  <p>El portaveu ho llegirà quan el professorat ho demani.</p>` }
+  <p>Quan el professorat ho demani, un de vosaltres ho llegeix en veu alta.</p>` }
 ];
 
 /* Comprovació dels enllaços: si un vídeo no està disponible, s'ofereix la cerca a YouTube. */
