@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DBAB3 · De la baralla a la batalla</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;600&family=Permanent+Marker&display=swap">
+<style>
+:root{--bg:#ffffff;--ink:#141414;--soft:#5d5d58;--paper:#f3f3ef;--line:#d9d9d2;--mark:#ffd60a;--on-mark:#141414;
+--display:"Archivo Black","Arial Black",Impact,sans-serif;--body:"Archivo","Helvetica Neue",Arial,sans-serif;--hand:"Permanent Marker","Comic Sans MS",cursive;--fs:1.12rem}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121211;--ink:#f1f1ec;--soft:#b3b3ab;--paper:#1d1d1a;--line:#3a3a36;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#121211;--ink:#f1f1ec;--soft:#b3b3ab;--paper:#1d1d1a;--line:#3a3a36;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);line-height:1.55;padding:0 16px 48px;font-size:var(--fs)}
+.wrap{max-width:860px;margin:0 auto}
+a{color:inherit}
+button{font:inherit;font-weight:600;background:var(--bg);color:var(--ink);border:2px solid var(--ink);padding:6px 12px;cursor:pointer}
+.bar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;padding:14px 0;border-bottom:3px solid var(--ink);font-size:1rem}
+.bar .act{font-family:var(--display)}
+.bar .act span{background:var(--mark);color:var(--on-mark);padding:0 .25em}
+.bar a.home{font-weight:600}
+header.top{padding:22px 0 8px}
+.eyebrow{font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--soft);margin:0 0 6px}
+h1{font-family:var(--display);font-weight:400;font-size:clamp(1.9rem,5.5vw,3.4rem);line-height:1;margin:0;text-wrap:balance}
+h1 em{font-style:normal;background:var(--mark);color:var(--on-mark);padding:0 .1em}
+.goal{margin:12px 0 0;font-size:1.05em;border-left:6px solid var(--mark);padding-left:12px}
+.plan{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0 4px;padding:0;list-style:none}
+.plan li{border:2px solid var(--ink);padding:4px 10px;font-weight:600;font-size:.92rem}
+.plan b{font-family:var(--display);font-weight:400}
+section.m{border-top:3px solid var(--ink);margin-top:26px;padding-top:14px}
+section.m h2{font-family:var(--display);font-weight:400;font-size:1.5em;line-height:1.1;margin:0 0 10px;display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+section.m h2 .n{background:var(--ink);color:var(--bg);padding:0 .35em}
+section.m h2 .t{font-family:var(--body);font-weight:600;font-size:.6em;color:var(--soft)}
+h3{font-size:1em;margin:1.1em 0 .4em}
+ol.do{padding-left:1.4em;margin:0 0 1em;display:grid;gap:.45em}
+ol.do li::marker{font-weight:700}
+.read{background:var(--paper);border:2px solid var(--line);padding:14px 18px;margin:0 0 1em}
+.read p{margin:0 0 .75em}.read p:last-child{margin:0}
+.read h4{margin:0 0 .5em;font-size:1.05em}
+.quote{font-family:var(--display);font-size:1.25em;line-height:1.2;border:3px solid var(--ink);padding:14px 16px;margin:0 0 1em}
+.quote small{display:block;font-family:var(--body);font-size:.6em;color:var(--soft);margin-top:6px}
+.links{list-style:none;padding:0;margin:0 0 1em;display:grid;gap:8px}
+.links li{border:2px solid var(--ink);padding:8px 12px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.links a{font-weight:600}
+table{border-collapse:collapse;width:100%;margin:0 0 1em;font-size:.95em}
+th,td{border:2px solid var(--ink);padding:7px 9px;text-align:left;vertical-align:top}
+th{background:var(--paper)}
+td.blank{height:2.1em}
+td.ex{color:var(--soft);font-style:italic}
+.note{border:3px solid var(--ink);background:var(--mark);color:var(--on-mark);padding:10px 14px;font-weight:600;margin:0 0 1em}
+.frame{background:var(--mark);color:var(--on-mark);padding:1px 6px;font-weight:600}
+.check{list-style:none;padding:0;margin:0 0 1em;display:grid;gap:6px}
+.check li::before{content:"☐ ";font-weight:700}
+details{border:2px dashed var(--soft);padding:8px 12px;margin:0 0 1em}
+summary{cursor:pointer;font-weight:600}
+.final{border:3px solid var(--ink);padding:12px 16px;margin-top:26px}
+.final h2{font-family:var(--display);font-weight:400;margin:0 0 6px;font-size:1.2em}
+@media (max-width:560px){th,td{padding:5px 6px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="bar">
+    <div class="act">DBAB3 · <span>Arrels del hip-hop</span></div>
+    <div><a class="home" href="index.html">Totes les sessions</a> &nbsp; <button type="button" id="sm" aria-label="Lletra més petita">A−</button> <button type="button" id="bg" aria-label="Lletra més gran">A+</button></div>
+  </div>
+  <header class="top">
+    <p class="eyebrow">Música · 2n ESO · De la baralla a la batalla</p>
+    <h1>De la baralla a la <em>batalla</em></h1>
+    <p class="goal"><strong>Avui aprendràs a</strong> explicar per què una batalla no és una baralla, a partir del discurs «I have a dream» de Martin Luther King.</p>
+    <ul class="plan"><li><b>1</b> · La frase clau · 5'</li><li><b>2</b> · Llegeix, escolta i fes l&#x27;esquema · 35'</li><li><b>3</b> · Un acord per a la lliga · 10'</li></ul>
+    <p class="note">Treballa sol o sola, amb el teu ordinador i la llibreta. Fes els moments per ordre. Si tens un dubte, rellegeix les instruccions i pregunta al company del costat abans que al professorat.</p>
+  </header>
+  
+  <section class="m" id="m1">
+    <h2><span class="n">1</span>La frase clau<span class="t">5 minuts</span></h2>
+    
+    <div class="quote">«No hem de permetre que la nostra protesta creativa degeneri en violència física.»<small>Martin Luther King, Washington, 28 d'agost de 1963 (traducció)</small></div>
+    <ol class="do">
+      <li>Llegeix la frase dues vegades.</li>
+      <li>A la llibreta, escriu la data d'avui i el títol <b>DBAB3 · De la baralla a la batalla</b>.</li>
+      <li>Respon amb una frase: <span class="frame">Per a mi, una «protesta creativa» és…</span></li>
+    </ol>
+  </section>
+  <section class="m" id="m2">
+    <h2><span class="n">2</span>Llegeix, escolta i fes l'esquema<span class="t">35 minuts</span></h2>
+    
+    <ol class="do">
+      <li>Llegeix el text amb atenció.</li>
+      <li>Escolta el final del discurs: busca el moment en què Martin Luther King repeteix <i>«I have a dream»</i> (és cap al final del vídeo).</li>
+      <li>Copia l'esquema a la llibreta i completa'l amb informació del text.</li>
+      <li>Escriu un resum de 3 frases fent servir els inicis que et donem.</li>
+    </ol>
+    <div class="read">
+      <h4>Del somni de Washington a les batalles del Bronx</h4>
+      <p>Als anys cinquanta i seixanta, als Estats Units, la població afroamericana no tenia els mateixos drets que la blanca: hi havia escoles, autobusos i barris separats. El 28 d'agost de 1963, més de 200.000 persones es van manifestar a Washington. Martin Luther King hi va fer el seu discurs més famós, <i>«I have a dream»</i> («Tinc un somni»): somiava un país on els seus fills fossin jutjats pel seu caràcter i no pel color de la pell. Va demanar lluitar sense violència.</p>
+      <p>Deu anys després, al South Bronx de Nova York, moltes famílies eren pobres, els edificis cremaven i les bandes del barri es barallaven pel control dels carrers. La violència també era un problema.</p>
+      <p>Alguns joves que havien format part d'aquestes bandes van proposar una altra manera de competir. L'any 1973 es va crear la <b>Zulu Nation</b>, que convidava les bandes a enfrontar-se amb l'art. Les bandes es van convertir en <b>crews</b>, i en lloc de barallar-se amb els punys, competien en <b>batalles</b> de ball, de DJ i de rap. Guanyava qui ho feia millor, i el públic decidia. Així, el hip-hop va ser també una protesta creativa.</p>
+    </div>
+    <ul class="links"><li><span>Martin Luther King · «I have a dream» (1963)</span><a href="https://www.youtube.com/watch?v=smEqnnklfYs" target="_blank" rel="noopener">▶ Escolta</a></li><li><span>Text del discurs en castellà (PDF)</span><a href="https://igualdadynodiscriminacion.igualdad.gob.es/wp-content/uploads/2024/05/Martin_Luther_King_Tengo_un_sueno.pdf" target="_blank" rel="noopener">📄 Obre</a></li></ul>
+    <h3>Esquema per copiar a la llibreta</h3>
+    <table><thead><tr><th></th><th>Quin era el problema?</th><th>Resposta violenta (baralla)</th><th>Resposta creativa (batalla)</th></tr></thead><tbody><tr><td class="ex">EUA, 1963</td><td class="ex"></td><td class="ex"></td><td class="ex"></td></tr><tr><td class="ex">South Bronx, anys 70</td><td class="ex"></td><td class="ex"></td><td class="ex"></td></tr></tbody></table>
+    <h3>Resum de 3 frases</h3>
+    <ol class="do">
+      <li><span class="frame">Martin Luther King somiava…</span></li>
+      <li><span class="frame">Al Bronx, les bandes…</span></li>
+      <li><span class="frame">Una batalla no és una baralla perquè…</span></li>
+    </ol>
+  </section>
+  <section class="m" id="m3">
+    <h2><span class="n">3</span>Un acord per a la lliga<span class="t">10 minuts</span></h2>
+    
+    <p>A Beat Fighters fem batalles, no baralles. Escriu a la llibreta <b>un acord</b> per a la nostra lliga. Tria un d'aquests temes:</p>
+    <ul class="check"><li>Com tractem la banda contra qui ballem.</li><li>Què fem quan la puntuació del jurat no ens agrada.</li><li>Què fem quan algú s'equivoca.</li><li>Com fem que tothom pugui participar.</li></ul>
+    <p>Fes servir aquesta frase: <span class="frame">A la nostra lliga, quan ___, nosaltres ___.</span></p>
+    <p><i>Exemple: A la nostra lliga, quan l'altra banda acaba, nosaltres l'aplaudim.</i></p>
+  </section>
+  <div class="final">
+    <h2>Què lliures avui</h2>
+    <p>Fes una foto de la pàgina de la llibreta (frase, esquema, resum i acord) i penja-la a la tasca de Classroom.</p>
+  </div>
+</div>
+<script>
+let fs=1.12; try{const v=parseFloat(localStorage.getItem('dbab-fs')); if(v) fs=v;}catch(e){}
+const ap=()=>{document.body.style.setProperty('--fs',fs+'rem'); try{localStorage.setItem('dbab-fs',fs)}catch(e){}};
+document.getElementById('bg').onclick=()=>{fs=Math.min(2,+(fs+.12).toFixed(2));ap();};
+document.getElementById('sm').onclick=()=>{fs=Math.max(.9,+(fs-.12).toFixed(2));ap();};
+ap();
+</script>
+</body>
+</html>
