@@ -52,7 +52,7 @@ a.row:hover .rd{color:inherit}
     <p class="eyebrow">Música · 2n ESO · Vinculada a Beat Fighters</p>
     <h1>De la baralla a la <span>batalla</span></h1>
     <p class="sub">Arrels del hip-hop</p>
-    <p class="lead">Cinc sessions per entendre d’on ve el hip-hop i per què una batalla no és una baralla. Aquí hi ha tot el material de cada sessió.</p>
+    <p class="lead">Sis sessions per entendre d’on ve el hip-hop, com ha evolucionat i per què una batalla no és una baralla. A la S6 ho repassem tot en un fanzine.</p>
   </header>
   <nav id="nav" aria-label="Sessions"></nav>
   <div id="content"></div>
@@ -78,37 +78,40 @@ const DRIVE = {
 };
 
 const SESSIONS = [
-  {id:'dbab1', tag:'DBAB1', title:'Per què neix el hip-hop al Bronx?', items:[
+  {id:'s1', tag:'S1', title:'Per què neix el hip-hop al Bronx?', items:[
     {main:true, kind:'Fitxa', t:'Ain’t got no… I got!', d:'Fitxa d’audició de Nina Simone amb banc de paraules en anglès.', page:'no-tinc-tinc.html'},
     {main:true, kind:'Presentació', t:'Problema o resposta?', d:'Sis cites del Bronx dels anys 70. Responem amb el cos.', page:'problema-resposta.html'},
     {main:true, kind:'Presentació', t:'Vertader o fals', d:'Sis afirmacions: qui encerta, avança.', page:'problema-resposta.html#vf'},
-    {main:true, kind:'Joc', t:'Timeline inicial', d:'12 targetes. Guarda el teu resultat: el compararem a DBAB5.', page:'timeline-hiphop-12.html'},
+    {main:true, kind:'Joc', t:'Timeline inicial', d:'12 targetes. Apunta el teu resultat: el compararem a la S5.', page:'timeline-hiphop-12.html'},
     {kind:'Àudio', t:'«Ain’t Got No, I Got Life», Nina Simone', url:'https://youtu.be/L5jI9I03q8E'},
     {kind:'Vídeo', t:'Kool Herc i el breakbeat', url:'https://www.youtube.com/watch?v=btXVvpwgHcQ'},
     {kind:'Web', t:'Cindy Campbell, la festa del 1973', url:'https://rapealo.com/cindy/'}
   ]},
-  {id:'dbab2', tag:'DBAB2', title:'Els cinc elements', items:[
+  {id:'s2', tag:'S2', title:'Els cinc elements', items:[
     {main:true, kind:'Aplicatiu', t:'Grups d’experts · Els cinc elements', d:'Llegeix el teu element, respon les preguntes i prepara el guió per explicar-lo.', page:'experts.html'},
     {kind:'Vídeo', t:'Final de breaking, París 2024 · B-boys', url:'https://youtu.be/d-Vo866_jhY'},
     {kind:'Vídeo', t:'Final de breaking, París 2024 · B-girls', url:'https://youtu.be/ld5ygnvN99k'}
   ]},
-  {id:'dbab3', tag:'DBAB3', title:'De la baralla a la batalla', items:[
-    {main:true, kind:'Sessió', t:'De la baralla a la batalla', d:'Llegeix, escolta «I have a dream», fes l’esquema i escriu un acord per a la lliga.', page:'dbab3.html'},
-    {kind:'Vídeo', t:'«I have a dream», Martin Luther King (1963)', url:'https://www.youtube.com/watch?v=smEqnnklfYs'}
+  {id:'s3', tag:'S3', title:'De la baralla a la batalla', items:[
+    {main:true, kind:'Sessió', t:'De la baralla a la batalla', d:'Audició Old School · «I have a dream»: llegeix, fes l’esquema i resumeix · un acord per a la lliga.', page:'s3.html'}
   ]},
-  {id:'dbab4', tag:'DBAB4', title:'D’on ve la manera de dir del rap?', items:[
-    {main:true, kind:'Sessió', t:'D’on ve la manera de dir del rap?', d:'Llegeix els avantpassats del rap, omple la taula i resumeix.', page:'dbab4.html'},
+  {id:'s4', tag:'S4', title:'D’on ve la manera de dir del rap?', items:[
+    {main:true, kind:'Sessió', t:'D’on ve la manera de dir del rap?', d:'Audició Golden Age · els avantpassats del rap: llegeix i fes la taula · resumeix.', page:'s4.html'},
     {kind:'PDF', t:'Precedents vocals del rap (Versembrant)', url:'https://drive.google.com/file/d/1YFbvlP95qF_YJ35PwPJ1h3K60KA8o1wv/view?usp=sharing'}
   ]},
-  {id:'dbab5', tag:'DBAB5', title:'Com sona cada època?', items:[
-    {main:true, kind:'Sessió', t:'Com sona cada època?', d:'Timeline final, tres èpoques del hip-hop, «I Can» i comprova què has après.', page:'dbab5.html'},
-    {main:true, kind:'Joc', t:'Timeline final', d:'Les mateixes 12 targetes de DBAB1. Has millorat?', page:'timeline-hiphop-12.html'},
-    {kind:'Vídeo', t:'«I Can», Nas (2003)', url:'https://www.youtube.com/watch?v=RvVfgvHucRY'}
+  {id:'s5', tag:'S5', title:'Com sona cada època?', items:[
+    {main:true, kind:'Sessió', t:'Com sona cada època?', d:'Ordena per l’orella · quatre èpoques del rap i «I Can» · Timeline final.', page:'s5.html'},
+    {kind:'Playlist', t:'Old School', url:'https://www.youtube.com/playlist?list=PLTcCgaZxTaEEGqPcBo3_RxYOhD2avM-CB'},
+    {kind:'Playlist', t:'Golden Age', url:'https://www.youtube.com/playlist?list=PLTcCgaZxTaEHEh7mFSAz9x_fN2Ft9xBF4'},
+    {kind:'Playlist', t:'Boom Bap', url:'https://www.youtube.com/playlist?list=PLTcCgaZxTaEGncHmghWEgaQ4O8yJKhEdb'}
+  ]},
+  {id:'s6', tag:'S6', title:'El teu fanzine', items:[
+    {main:true, kind:'Sessió', t:'El teu fanzine', d:'Audició «Amor al barri» · fanzine de repàs a partir de la llibreta · comprova què has après.', page:'s6.html'},
+    {main:true, kind:'Guia', t:'Com es plega el fanzine', d:'Els 7 passos, què hi va a cada pàgina i el pòster secret.', page:'fanzine.html'}
   ]},
   {id:'mes', tag:'Voluntari', title:'Per anar més enllà', items:[
     {main:true, kind:'Ruta', t:'Ruta completa pels precedents del rap', d:'Més àudios i una crida i resposta en grup.', page:'precedents.html'},
     {main:true, kind:'Joc', t:'Timeline · Mitjà i Extrem', d:'25 i 35 targetes, per a qui vulgui un repte més gran.', page:'timeline-hiphop-25.html'},
-    {kind:'Vídeo', t:'«Amor al barri», Adala ft. Tribade', url:'https://www.youtube.com/watch?v=0xWvjShuj1w'},
     {kind:'Playlist', t:'Rap en català', url:'https://www.youtube.com/playlist?list=PLTcCgaZxTaEGlZ_3PheVremqaNcy4labT'}
   ]}
 ];
